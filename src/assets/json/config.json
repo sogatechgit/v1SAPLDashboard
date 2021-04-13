@@ -1,0 +1,10 @@
+{
+	"assets_url":"./assets/json/assets.json",
+	"anomalies_url":"./assets/json/anomalies.json",
+	"anomalies_url-x":"http://soga-alv/IMSAWeb/Pages/SAPLDash/assets/json/anomalies.json",
+	"overrides_url":"./assets/json/overrides.json",
+	"overrides_url-x":"http://soga-alv/IMSAWeb/Pages/SAPLDash/assets/json/overrides.json",
+	"override_url-y":"./../override.aspx",
+	"override_url":"http://soga-alv/IMSAWeb/statusoverride.aspx",
+	"show_anoms":false
+}

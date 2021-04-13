@@ -1,0 +1,45 @@
+$bs_info: #17a2b8;
+
+:host {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  z-index: 200;
+
+  #back_mask {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    background: white;
+    opacity: 0.05;
+  }
+
+  #fore_mask {
+    z-index: 201;
+    grid-row: 1;
+    grid-column: 1 / -1;
+
+    display: grid;
+    grid-template: 1fr / 1fr;
+
+    >div{
+      grid-row:1 / -1;
+      grid-column:1 / -1;
+      color:$bs_info;
+      margin: auto auto;
+      background:white;
+      padding:1em 2em;
+      border-radius: 1.5em;
+      box-shadow: 1px 1px 20px #333;
+      display: grid;
+      grid-template-columns:auto auto;
+      gap:1em;
+      i{
+        font-size:1.35em;
+      }
+      span{
+        font-size:1.3em;
+      }
+    }
+  }
+}

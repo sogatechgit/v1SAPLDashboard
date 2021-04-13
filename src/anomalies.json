@@ -1,0 +1,6 @@
+[
+  {"aid":4,"loc":"aaabaa","id":201,"ref":"20-8888","tit":"sample anomaly 1","desc":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, obcaecati.","ident":"20200225","clr":4},
+  {"aid":9,"loc":"aaabab","id":202,"ref":"21-8889","tit":"sample anomaly 2","desc":"sample anomaly 4 desc","ident":"20210815","clr":1},
+  {"aid":11,"loc":"aaaabaaa","id":208,"ref":"19-8778","tit":"sample anomaly 3","desc":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia suscipit minima facilis repellendus molestias in reiciendis voluptate nam quibusdam! Asperiores?","ident":"20190723","clr":3},
+  {"aid":12,"loc":"aaaabcffax","id":210,"ref":"20-8855","tit":"sample anomaly 4","desc":"sample anomaly 4 desc","ident":"20200728","clr":2}
+]

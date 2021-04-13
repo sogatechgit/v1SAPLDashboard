@@ -1,0 +1,45 @@
+<div [ngClass]="{dashed:dashed}" id="hor"  *ngIf="hor">
+  <div [ngClass]="{dashed:dashed}" [style.border-color]="ds.back(_id)">123</div>
+</div>
+<div id="ver" [style.border-color]="ds.back(_id)" *ngIf="ver">
+  <div [ngClass]="{dashed:dashed}" [style.border-color]="ds.back(_id)"></div>
+</div>
+<!-- <div id="cen" [style.background-color]="ds.back(_id)"  *ngIf="ul || ur || ll || lr"> -->
+<div id="cen"   *ngIf="ul || ur || ll || lr">
+  <!-- <div [style.background-color]="ds.back(_id)" ></div> -->
+</div>
+
+<div id="left"  *ngIf="ul || ll">
+  <div [ngClass]="{dashed:dashed}" [style.border-color]="ds.back(_id)"></div>
+</div>
+<div id="right" *ngIf="ur || lr">
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)" ></div>
+</div>
+<div id="top"  *ngIf="ul || ur">
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)"></div>
+</div>
+<div id="bottom"  *ngIf="ll || lr">
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)"></div>
+</div>
+
+<div id="a_ul" [style.font-size.em]="ff" *ngIf="ul"  (click)="SetOverride($event)"><ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
+<div id="a_lr" [style.font-size.em]="ff" *ngIf="lr"><span [innerHTML]="lbl"></span></div>
+<div id="a_ll" [style.font-size.em]="ff" *ngIf="ll"><span [innerHTML]="lbl"></span></div>
+<div id="a_hu" [style.font-size.em]="ff" *ngIf="hor" [ngClass]="lblClass" (click)="SetOverride($event)">
+  <ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
+<div id="a_hl" [style.font-size.em]="ff" *ngIf="false"><span [innerHTML]="lbl"></span></div>
+<div id="a_vl" [style.font-size.em]="ff" *ngIf="ver && lblL"  (click)="SetOverride($event)"><ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
+<div id="a_vr" [style.font-size.em]="ff" *ngIf="ver && lblR" (click)="SetOverride($event)"><ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
+<div id="a_cen" [style.font-size.em]="ff" *ngIf="ver && !lblR && !lblL" (click)="SetOverride($event)"><span [innerHTML]="lbl"></span></div>
+<div id="a_ur" (click)="SetOverride($event)" [sytle.font-size.em]="ff" *ngIf="ur"><ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
+<!-- <span id="lbl" [ngClass]="lblClass" #label [style.font-size.em]="fontFactor ? fontFactor : null"><ng-content></ng-content></span> -->
+<div #label style="display: none;">
+  <ng-content></ng-content>
+</div>
+<ng-template #tempOVR>
+  <i id="ovr" *ngIf="ds.ovr(_id)" class="fa fa-certificate" [style.color]="ds.override(_id)"
+     style="padding:0em 0.15em 0em 0.15em;"></i>
+</ng-template>
+<!-- <div id="sub_a">
+  <div id="mid"></div>
+</div> -->

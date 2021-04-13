@@ -1,0 +1,20 @@
+:host {
+  overflow: hidden;
+
+  > div {
+    background: #ffc107;
+    color-adjust: exact;
+    // fill: red;
+
+    // fill: #ffc107;
+    box-sizing: border-box;
+    border: 2px solid #28a745;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    place-content: center;
+    text-align:center;
+  }
+}

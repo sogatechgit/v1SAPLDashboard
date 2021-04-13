@@ -1,0 +1,261 @@
+$line_width: 0.2em;
+
+:host {
+  z-index: 0;
+  display: grid;
+  //grid-template: auto 4px auto / 1fr 4px 1fr;
+  width: 100%;
+  height: 100%;
+  color-adjust: exact;
+  > div {
+    // background-color: #28a745;
+    border-color: #28a745;
+    border-style: solid;
+    // border: $line_width solid #28a745;
+  }
+  > div.dashed {
+    // border: $line_width dashed #28a745;
+    // border-style: dashed;
+  }
+  #hor,
+  #ver,
+  #cen,
+  #right,
+  #left,
+  #top,
+  #bottom {
+    // cursor: pointer;
+    // background-color: red;
+    // border-width: $line_width;
+    // box-sizing:border-box;
+    font-size: 0.1em;
+    border: none;
+    div {
+      font-size: 1em;
+      border-style: none;
+      border-color: blue;
+      border-width:3px;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+
+  }
+  #hor {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    z-index: 10;
+
+    div {
+      border-top-style: solid;
+      height: 0px;
+      // height: 100%;
+    }
+    div.dashed {
+      border-top-style: dashed;
+      height: 0px;
+    }
+  }
+  #ver {
+    grid-row: 1 / -1;
+    grid-column: 2;
+    div {
+      border-left-style: solid;
+      width: 0px;
+    }
+    div.dashed {
+      border-left-style: dashed;
+      width: 0px;
+    }
+  }
+
+  #cen {
+    grid-row: 2;
+    grid-column: 2;
+    div {
+      border-left-style: solid;
+      width: 0px;
+    }
+    div.dashed {
+      border-left-style: dashed;
+      width: 0px;
+    }
+  }
+
+  #right {
+    grid-row: 2;
+    grid-column: 3;
+
+    div {
+      border-top-style: solid;
+      border-left-style: solid;
+      height: 0px;
+    }
+    div.dashed {
+      border-top-style: dashed;
+      border-left-style: dashed;
+      height: 0px;
+    }
+
+  }
+  #left {
+    grid-row: 2;
+    grid-column: 1;
+    div {
+      border-top-style: solid;
+      border-right-style: solid;
+      height: 0px;
+    }
+    div.dashed {
+      border-top-style: dashed;
+      border-right-style: dashed;
+      height: 0px;
+    }
+  }
+  #top {
+    grid-row: 1;
+    grid-column: 2;
+    div {
+      border-left-style: solid;
+      border-bottom-style: solid;
+      width: 0px;
+    }
+    div.dashed {
+      border-left-style: dashed;
+      border-bottom-style: dashed;
+      width: 0px;
+    }
+  }
+  #bottom {
+    grid-row: 3;
+    grid-column: 2;
+    div {
+      border-left-style: solid;
+      border-top-style: solid;
+      width: 0px;
+    }
+    div.dashed {
+      border-left-style: dashed;
+      border-top-style: dashed;
+      width: 0px;
+    }
+  }
+
+  #a_ur,
+  #a_ul,
+  #a_lr,
+  #a_ll,
+  #a_hu,
+  #a_hl,
+  #a_vl,
+  #a_vr,
+  #a_cen,
+  #sub_a {
+    border: none;
+    border-radius: 0.5em;
+    z-index: 100;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+
+    color: #2f7986;
+    overflow: hidden;
+  }
+  #a_ur:hover,
+  #a_ul:hover,
+  #a_lr:hover,
+  #a_ll:hover,
+  #a_hu:hover,
+  #a_hl:hover,
+  #a_vl:hover,
+  #a_vr:hover,
+  #a_cen:hover,
+  #sub_a:hover {
+    // color: red;
+    // text-shadow:1px 1px 8px #dadff0;
+    // text-shadow:1px 1px 8px #dadff0;
+    // text-shadow:1px 1px 6px navy;
+    $hl: #92d2dd;
+
+    box-shadow: 1px 1px 10px $hl;
+    background-color: $hl;
+    // color: #2f7986;
+    transform: translate(1px, -1px);
+  }
+
+  #sub_a {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template: 1fr 10px 1fr / 1fr 8px 1fr;
+    // #mid{
+    //   border: 2px solid #28a745;
+    //   grid-column: 1;
+    //   grid-row: 1;
+
+    // }
+  }
+
+  #a_ur {
+    grid-row: 1;
+    grid-column: 3;
+    justify-self: center;
+    align-self: end;
+  }
+  #a_ul {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: end;
+    justify-self: center;
+  }
+  #a_lr {
+    grid-row: 3;
+    grid-column: 3;
+  }
+  #a_ll {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  #a_hu {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    align-self: end;
+    justify-self: center;
+    &.right {
+      justify-self: end;
+      padding-right: 5px;
+    }
+    &.left {
+      justify-self: start;
+      padding-left: 5px;
+    }
+    &.mid {
+      place-self: center;
+    }
+  }
+  #a_hl {
+    grid-row: 3;
+    grid-column: 1 / -1;
+  }
+
+  #a_vl {
+    grid-row: 1 / -1;
+    grid-column: 1;
+    align-self: center;
+    justify-self: right;
+  }
+  #a_vr {
+    grid-row: 1 / -1;
+    grid-column: 3;
+    align-self: center;
+    justify-self: left;
+  }
+  #a_cen {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    place-self: center;
+  }
+}

@@ -1,0 +1,259 @@
+<div #main_wrapper id="main_wrapper" [style.font-size.em]="fontFactor()" *ngIf="ds.symbols.length">
+
+  <div id="details_band">
+    <div id="details_wrapper" #details_wrapper [ngClass]="{no_text:noAnomDetails}">
+
+      <div id="section_band" [ngClass]="{no_text:noAnomDetails}">
+        <div>
+          <div>PRODUCTION SYSTEM</div>
+          <div><span>&nbsp;</span>
+            <div>DISTRIBUTION SYSTEM</div>
+            <div>
+              <span><i class="fa fa-print" (click)="Print()"></i></span>
+              <span><i class="fa fa-sync-alt" matTooltip="Reload..." (click)="Reload()"></i></span>
+              <span><i [class]="'fa fa-chevron-circle-' + (noAnomDetails ? 'right' : 'left')"
+                  (click)="ToggleAnom()"  [matTooltip]="(noAnomDetails ? 'Show' : 'Hide')+' anomalies list...'"></i></span>
+              </div>
+          </div>
+        </div>
+        <div *ngIf="!noAnomDetails">
+          <div>COMMENTARY</div>
+          <div>IDENTIFIED</div>
+        </div>
+      </div>
+
+      <div id="topside_band">TOPSIDE</div>
+      <div id="risers_band">RISERs / UMBILICAL</div>
+      <div id="subsea_band">SUBSEA</div>
+      <div id="anom_grid" *ngIf="!noAnomDetails" #anom_grid>
+        <ng-container *ngTemplateOutlet="anomList"></ng-container>
+      </div>
+
+      <div id="footer_band">
+        <span>Legend for XMas Trees:</span>
+        <div>&nbsp;</div>
+        <span>Yellow border, choke issues</span>
+        <div>&nbsp;</div>
+        <span>Yellow fill, for external XMas Tree issues</span>
+      </div>
+
+      <div id="rcv_grid">
+
+        <app-symbol-a id="r1c1" class="ver-a ver-c1"></app-symbol-a>
+        <app-symbol-a id="r1c2" class="ver-a ver-c2"></app-symbol-a>
+        <app-symbol-a id="r1c3" class="ver-a ver-c3"></app-symbol-a>
+        <app-symbol-a id="r1c4" class="ver-a ver-c4"></app-symbol-a>
+
+        <app-symbol-a id="asd" [rad]="rad"></app-symbol-a>
+
+        <app-symbol-a id="psdv" [rad]="rad" class="hor-b"></app-symbol-a>
+
+        <app-symbol-a id="r2c1" class="ver-b ver-c1"></app-symbol-a>
+        <app-symbol-a id="r2c2" class="ver-b ver-c2"></app-symbol-a>
+        <app-symbol-a id="r2c3" class="ver-b ver-c3"></app-symbol-a>
+        <app-symbol-a id="r2c4" class="ver-b ver-c4"></app-symbol-a>
+
+        <app-symbol-a id="esdv" [rad]="rad" class="hor-b"></app-symbol-a>
+        <app-symbol-a id="vgms" [rad]="rad">VGMS</app-symbol-a>
+
+        <app-symbol-a id="riser8" class="ver-c ver-c1" vt=true></app-symbol-a>
+        <app-symbol-a id="riser7" class="ver-c ver-c2" vt=true></app-symbol-a>
+        <app-symbol-a id="riser6" class="ver-c ver-c3" vt=true></app-symbol-a>
+        <app-symbol-a id="riser5" class="ver-c ver-c4" vt=true></app-symbol-a>
+
+      </div>
+
+      <div id="dist_grid">
+        <!-- <div class="hor-a">RCV [not in scope]</div> -->
+
+        <app-symbol-a id="spcu" [rad]="rad"></app-symbol-a>
+        <app-symbol-a id="mcs" [rad]="rad"></app-symbol-a>
+        <app-symbol-a id="hpu" [rad]="rad"></app-symbol-a>
+        <app-symbol-a id="meg" [rad]="rad"></app-symbol-a>
+        <app-symbol-a id="ci" [rad]="rad"></app-symbol-a>
+
+        <app-symbol-b id="hpu_swivel" ver=true></app-symbol-b>
+        <app-symbol-b id="spcu_swivel" ll=true verOff="0.05" horOff="0.2"></app-symbol-b>
+        <!-- <app-symbol-b id="mcs_swivel" ll=true verOff="0.5" horOff="0.65"></app-symbol-b> -->
+        <app-symbol-b id="mcs_swivel" ll=true verOff=".8" horOff="0.1"></app-symbol-b>
+
+        <app-symbol-b id="meg_swivel" lr=true verOff="0.05" horOff="0.1"></app-symbol-b>
+        <app-symbol-b id="ci_swivel" lr=true verOff="0.8" horOff="0.1"></app-symbol-b>
+
+        <app-symbol-a class="hor-b" id="swivel" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+
+        <app-symbol-a id="umb_power" class="ver-c ver-c1" vt=true></app-symbol-a>
+        <app-symbol-a id="umb_hydraulic" class="ver-c ver-c2" vt=true>
+        </app-symbol-a>
+        <app-symbol-a id="umb_meg" class="ver-c ver-c3" vt=true></app-symbol-a>
+        <app-symbol-a id="umb_chemical" class="ver-c ver-c4" vt=true>
+        </app-symbol-a>
+
+        <div id="dash">&nbsp;</div>
+        <div id="umb">UMBILICAL</div>
+
+      </div>
+
+      <div id="subsea_grid">
+        <app-symbol-a id="rbm" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+        <app-symbol-a id="esfl" fontFactor="1.2"></app-symbol-a>
+
+        <app-symbol-b id="rj03" [ul]=true verOff="0.1" horOff="0.04"></app-symbol-b>
+        <app-symbol-b id="rj04" [ul]=true verOff="0.3" horOff="0.02"></app-symbol-b>
+        <app-symbol-b id="rj02" [ur]=true verOff="0.1" horOff="0.04"></app-symbol-b>
+        <app-symbol-b id="rj01" [ur]=true verOff="0.3" horOff="0.02"></app-symbol-b>
+
+        <app-symbol-b id="pj03" [hor]=true lblR=true></app-symbol-b>
+        <app-symbol-b id="pj04" [hor]=true lblR=true></app-symbol-b>
+
+        <app-symbol-b id="mj02" [hor]=true lblM=true></app-symbol-b>
+        <app-symbol-b id="mj01" [hor]=true lblM=true></app-symbol-b>
+
+        <app-symbol-b id="pj02" [hor]=true lblL=true></app-symbol-b>
+        <app-symbol-b id="pj01" [hor]=true lblL=true></app-symbol-b>
+
+        <div id="uta_grid">
+          <app-symbol-a id="uta" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+          <app-symbol-a id="efls" vt=true>EFLS</app-symbol-a>
+          <app-symbol-a id="sfls" vt=true>SFLS</app-symbol-a>
+          <app-symbol-a id="efls-2" vt=true>EFLS</app-symbol-a>
+
+          <app-symbol-a id="uta-2" ovrBottom="true" [rad]="rad"></app-symbol-a>
+          <app-symbol-a id="uta-3" ovrBottom="true" [rad]="rad"></app-symbol-a>
+
+          <app-symbol-a id="sfls-2" vt=true>SFLS</app-symbol-a>
+          <app-symbol-a id="efls-3" vt=true>EFLS</app-symbol-a>
+          <app-symbol-a id="optic" vt=true></app-symbol-a>
+          <app-symbol-a id="term" [rad]="rad"></app-symbol-a>
+        </div>
+
+        <div id="plet42_grid">
+          <app-symbol-a id="plet42" [rad]="rad"></app-symbol-a>
+          <app-symbol-a id="fl4" vt=true>FL4</app-symbol-a>
+          <app-symbol-a id="bt4-2" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="bt4-1" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="plet41" [rad]="rad"></app-symbol-a>
+
+          <app-symbol-b id="ap4_plet41" dashed=true ver=true></app-symbol-b>
+
+          <app-symbol-a id="ap4" ovrBottom="true" round=true></app-symbol-a>
+
+        </div>
+
+        <div id="plet32_grid">
+          <app-symbol-a id="plet32" [rad]="rad"></app-symbol-a>
+          <app-symbol-a id="fl3" vt=true>FL3</app-symbol-a>
+          <app-symbol-a id="bt3-2" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="bt3-1" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="plet31" [rad]="rad"></app-symbol-a>
+
+          <app-symbol-a id="ap3" ovrBottom="true" round=true></app-symbol-a>
+
+
+          <app-symbol-b id="ap3_plet31" dashed=true ver=true></app-symbol-b>
+
+          <app-symbol-b id="ap3_plet31_conn" ver=true></app-symbol-b>
+
+
+        </div>
+
+        <div id="plet22_grid">
+          <app-symbol-a id="plet22" [rad]="rad"></app-symbol-a>
+          <app-symbol-a id="fl2" vt=true>FL2</app-symbol-a>
+          <app-symbol-a id="bt2-2" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="bt2-1" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="plet21" [rad]="rad"></app-symbol-a>
+
+          <app-symbol-b id="ap2_plet21" dashed=true ver=true></app-symbol-b>
+
+          <app-symbol-a id="ap2" ovrBottom="true" round=true></app-symbol-a>
+
+        </div>
+
+        <div id="plet12_grid">
+          <app-symbol-a id="plet12" [rad]="rad"></app-symbol-a>
+          <app-symbol-a id="fl1" vt=true>FL1</app-symbol-a>
+          <app-symbol-a id="bt1-2" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="bt1-1" fontFactor="0.9"></app-symbol-a>
+          <app-symbol-a id="plet11" [rad]="rad"></app-symbol-a>
+
+          <app-symbol-b id="ap1_plet11" dashed=true ver=true></app-symbol-b>
+
+          <app-symbol-a id="ap1" ovrBottom="true" round=true></app-symbol-a>
+
+        </div>
+
+        <div id="pmw_grid">
+          <app-symbol-a id="pmw" [rad]="rad" fontFactor="1.1">
+          </app-symbol-a>
+          <app-symbol-a id="p5" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p4" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p6" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p7" [rad]="rad" ovrBottom=true></app-symbol-a>
+
+          <app-symbol-b id="_12wj101" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+          <app-symbol-b id="_12wj301" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+
+          <app-symbol-b id="_12wj601" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+          <app-symbol-b id="_12wj401" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+
+        </div>
+
+        <div id="pme_grid">
+          <app-symbol-a id="pme" [rad]="rad" fontFactor="1.1"></app-symbol-a>
+          <app-symbol-a id="p3" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p8" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p1" [rad]="rad" ovrBottom=true></app-symbol-a>
+
+          <app-symbol-b id="_11wj401" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+
+          <app-symbol-b id="_11wj301" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+          <app-symbol-b id="_11wj101" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
+
+        </div>
+
+        <div id="spares_grid">
+          <span>CAPITAL SPARES</span>
+          <app-symbol-a id="dosb" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="dof" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="tfmcd" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="tfmch" [rad]="rad" ovrBottom=true></app-symbol-a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="header_band">Prelude Subsea System Asset Integrity Status Dashboard</div>
+
+  <div id="legend_band">&nbsp;</div>
+
+  <!-- <div id="mask" *ngIf="ds.processing">&nbsp;</div>
+  <div id="progress"  *ngIf="ds.processing">
+    <i class="fa fa-sync fa-spin fa-3x fa-fw"></i>
+  </div> -->
+
+
+</div> <!--main wrapper-->
+
+<h2 class="break">Break0</h2>
+
+<div id="anom_grid_sep" #prnAnoms>
+  <!-- <h2 style = "page-break-before: always;">Break1</h2>
+  <h2 style = "page-break-before: always;">Break2</h2>
+    <h2 style = "page-break-before: always;">Break3</h2>
+  <h2 style = "page-break-before: always;">{{prnInfo}}</h2> -->
+  <ng-container *ngTemplateOutlet="anomList"></ng-container>
+</div>
+
+<ng-template #anomList>
+  <div *ngFor="let item of ds.AnomList">
+    <div><span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
+      <span class="refLink" (click)="ds.OpenAnomaly(item.id)"  matTooltip="Click to open anomaly record...">[{{item.ref}}]</span> {{item.ass}} {{item.tit}}.
+      </span><span [innerHTML]="ds.FormatDesc(item.desc)"></span></div>
+    <div [innerHTML]="ds.dateStr(item.ident)"></div>
+  </div>
+</ng-template>
+
+<app-progress-mask  *ngIf="ds.processing" prompt="Loading data. Please wait..."></app-progress-mask>
+
