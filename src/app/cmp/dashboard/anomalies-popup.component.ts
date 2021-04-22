@@ -1,6 +1,6 @@
 import { DataService } from './../../svc/data.service';
-import { IAnomalyInfo, IAssetStatusInfo } from './dashboard.component';
-import { Component, Inject, OnInit } from '@angular/core';
+import { IAssetStatusInfo } from './dashboard.component';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -14,22 +14,40 @@ export class AnomaliesPopupComponent implements OnInit {
     public dialogRef: MatDialogRef<AnomaliesPopupComponent>
   ) {}
 
-  ngOnInit(): void {}
+  @ViewChild('just') just  : ElementRef;
+
+  _ovrJust:string 
+  _ovrClr:number
+  ngOnInit(): void {
+    this._ovrClr = this.info.ovrClr;
+    // this._ovrJust = this.info.ovrJust;
+  }
 
   Close() {
     this.dialogRef.close();
   }
 
   SetOverride(value: number) {
+    if(value == this._ovrClr){
+      // clear override
+      this._ovrClr = -1;
+    }else{
+      this._ovrClr = value;
+    }
+  }
+
+  Submit() {
 
     if(this.info.anoms.length == 0) return;
 
-    let ovrVal: number = this.info.ovrClr == value ? -1 : value;
-    let clear: boolean = ovrVal == -1;
+    const ovrVal: number = this._ovrClr;
+    const ovrJust: string = this.just.nativeElement.value;
+    const clear: boolean = ovrVal == -1;
 
     this.ds.PostOverride(
       this.info.assetId,
       ovrVal,
+      ovrJust,
       (event) => {
         console.log('Override event: ', event);
         //this.ds.openSnackBar("Status override set: " + err.message,'x',3000)
@@ -52,9 +70,11 @@ export class AnomaliesPopupComponent implements OnInit {
         if (clear) {
           this.info.ovrClr = -1;
           this.info.override = '';
+          this.info.ovrJust = '';
         } else {
           this.info.ovrClr = ovrVal;
           this.info.override = this.ds.colors[ovrVal - 1];
+          this.info.ovrJust = ovrJust;
         }
 
         this.dialogRef.close();
@@ -66,12 +86,20 @@ export class AnomaliesPopupComponent implements OnInit {
     );
   }
 
+  get withAnoms():boolean{
+    if(!this.info) return false;
+    if(!this.info.anoms) return false;
+    return this.info.anoms.length != 0
+  }
+
   SwitchClass(value: number): any {
     return {
       fa: true,
-      'fa-toggle-on': this.info.ovrClr == value && this.info.anoms.length != 0,
-      'fa-toggle-off': this.info.ovrClr != value || this.info.anoms.length == 0,
-      disable: this.info.anoms.length == 0,
+      // 'fa-toggle-on': this.info.ovrClr == value && this.info.anoms.length != 0,
+      // 'fa-toggle-off': this.info.ovrClr != value || this.info.anoms.length == 0,
+      'fa-toggle-on': this._ovrClr == value && this.withAnoms,
+      'fa-toggle-off': this._ovrClr != value || !this.withAnoms,
+      disable: !this.withAnoms,
     };
   }
 

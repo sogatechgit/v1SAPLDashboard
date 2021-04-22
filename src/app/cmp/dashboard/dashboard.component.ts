@@ -140,6 +140,8 @@ export interface IAssetStatusInfo {
   override?: string;
   ovrClr?: number;
 
+  ovrJust?:string;
+
   color?: string;
   border?: string;
   anoms?: Array<IAnomalyInfo>;
@@ -153,6 +155,7 @@ export interface IAssetStatusInfo {
 export interface IOverride {
   aid: number;
   clr: number;
+  just: string;
 }
 
 export interface IAnomalyInfo {

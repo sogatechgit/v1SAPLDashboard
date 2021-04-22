@@ -89,7 +89,5 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
 
   SetOverride(event: any) {
     this.ds.ProcessClick(this._id);
-    // console.log('Clicked item: ' + this._id)
-    // this.overrideClick.emit(this);
   }
 }

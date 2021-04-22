@@ -1,4 +1,5 @@
-<div #cont [style.font-size.em]="fontFactor ? fontFactor : null"
+  <!-- main symbol -->
+  <div #cont [style.font-size.em]="fontFactor ? fontFactor : null"
   (click)="SetOverride($event)"
   [style.background]="ds.back(_id)"
   [style.border-color]="ds.border(_id)"
@@ -9,14 +10,17 @@
   <span *ngIf="lblLR" id="lr">{{lblLR}}</span>
   <span *ngIf="lblLL" id="ll">{{lblLL}}</span>
 
-  <div id="mid" [ngStyle]="{'writing-mode': vt ? 'vertical-rl':null,'text-orientation': vt ? 'upright':null}">
-    <i id="ovr" *ngIf="ds.ovr(_id) && !ovrBottom && !isVertical"
-      class="fa fa-certificate" [style.color]="ds.override(_id)"
-     ></i>
-     <span [innerHTML]="lbl"></span>
 
+  <div id="mid" 
+    [ngStyle]="{'writing-mode': vt ? 'vertical-rl':null,'text-orientation': vt ? 'upright':null}">
+    <!-- inline override symbol -->
+    <i id="ovr" *ngIf="ds.ovr(_id) && !ovrBottom && !isVertical"
+      class="fa fa-certificate" [style.color]="ds.override(_id)"></i>
+     <span [innerHTML]="lbl"></span>
   </div>
-  <div id="mb" *ngIf="ds.ovr(_id) && (ovrBottom || isVertical)">
+  
+    <!-- bottom or vertical override symbol -->
+    <div id="mb" *ngIf="ds.ovr(_id) && (ovrBottom || isVertical)">
     <i id="ovr_out" class="fa fa-certificate" [style.color]="ds.override(_id)"></i>
   </div>
 

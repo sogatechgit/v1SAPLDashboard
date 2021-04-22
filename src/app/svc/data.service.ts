@@ -222,8 +222,10 @@ export class DataService {
       const ovr = ovrs.find((o) => o.aid == sym.assetId);
       if (ovr) {
         sym.ovrClr = ovr.clr;
+        sym.ovrJust = ovr.just;
         sym.override = this.colors[ovr.clr - 1];
       } else {
+        sym.ovrJust = '';
         sym.ovrClr = null;
         sym.override = '';
       }
@@ -325,7 +327,8 @@ export class DataService {
     return info.border;
   }
 
-  back(symId: string): string {
+  // back(symId: string): string {
+    override(symId: string): string {
     const info = this.info(symId);
     if (!info ? true : !info.color) {
       if (info && !info.color) {
@@ -337,9 +340,10 @@ export class DataService {
     return info.color;
   }
 
-  override(symId: string): string {
+  // override(symId: string): string {
+    back(symId: string): string {
     const info = this.info(symId);
-    if (!info ? true : !info.override) return this.back(symId);
+    if (!info ? true : !info.override) return this.override(symId);
     return info.override;
   }
 
@@ -391,16 +395,13 @@ export class DataService {
 
   ProcessClick(symId: string) {
     const info = this.info(symId);
-    console.log('Clicked: ', info);
-
-    // this.dialog.open(AnomaliesPopupComponent,)
 
     const ref = this.dialog.open(AnomaliesPopupComponent, {
       minWidth: `800px`,
       maxWidth: '800px',
       maxHeight: `480px`,
       minHeight: `480px`,
-      disableClose: false,
+      disableClose: true,
       data: {
         // data belonging to popup
         // component: {
@@ -423,7 +424,7 @@ export class DataService {
   }
 
   FormatDesc(desc: string): string {
-    return desc.replace(/\n/gi, '<br>');
+    return '<br/>' + desc.replace(/\n/gi, '<br>');
   }
 
   OpenAnomaly(anomid: any, dialog?: any) {
@@ -436,11 +437,16 @@ export class DataService {
   }
 
   public postingOverrides: boolean = false;
-  PostOverride(aid: any, clr: any, onSuccess: Function, onError: Function) {
+  PostOverride(aid: any, clr: any,just:string , onSuccess: Function, onError: Function) {
     this.postingOverrides = true;
     const fd = new FormData();
+
     fd.append('aid', aid);
     fd.append('clr', clr);
+    fd.append('just', just);
+
+    console.log("Post Data: ",fd.get('aid'))
+
     const obs = this.http.post(this._override_url, fd, {
       reportProgress: true,
       observe: 'events',

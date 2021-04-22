@@ -1,16 +1,16 @@
 <h2 #heading mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-  <i class="fa fa-industry"></i><span>{{info.label}}</span>
+  <i class="fa fa-industry" style="text-shadow: 0px 0px 1px white;"  [style.color]="info.color ? info.color : info.spare ? ds.CL_LIGHT_BLUE : ds.CL_GREEN"></i>
+  <!-- <div id="swatch" [style.background-color]="info.color ? info.color : info.spare ? ds.CL_LIGHT_BLUE : ds.CL_GREEN">&nbsp;</div> -->
+  <span>{{info.label}}</span>
   <i class="fa fa-times" (click)="Close()" matTooltip="Close..."></i>
 </h2>
 <div id="details">
-  <span>Current Status:</span>
-  <div id="swatch" [style.background-color]="info.color ? info.color : info.spare ? ds.CL_LIGHT_BLUE : ds.CL_GREEN">
-    &nbsp;</div>
-  <span>Applied Override:</span>
+  
+  <span id="lbl_just">Override Justification:</span>
+  <span id="lbl_ovr">Applied Override:</span>
   <i id="grn" matTooltip="Set status override to GREEN..." [ngClass]="SwitchClass(1)" (click)="SetOverride(1)"></i>
   <i id="yel" matTooltip="Set status override to YELLOW.." [ngClass]="SwitchClass(2)" (click)="SetOverride(2)"></i>
   <i id="ora" matTooltip="Set status override to ORANGE..." [ngClass]="SwitchClass(3)" (click)="SetOverride(3)"></i>
-
 
   <div id="col_head">
     <span>Commentary</span>
@@ -27,8 +27,18 @@
     </div>
   </div>
 
+  <textarea *ngIf="!withAnoms" disabled name="ovr_just" #just id="ovr_just" cols="80" rows="4" [innerHTML]="''"></textarea>
+  <textarea *ngIf="withAnoms" name="ovr_just" #just id="ovr_just" cols="80" rows="4" [innerHTML]="this.info.ovrJust"></textarea>
 
+  <div  id="actions">
+    <button *ngIf="withAnoms" (click)="Submit()">Accept</button>
+    <button *ngIf="!withAnoms" class="disabled" disabled>Accept</button>
+    <button (click)="Close()">Cancel</button>
+  </div>
+
+  
 </div>
+
 
 <app-progress-mask id="mask" *ngIf="ds.postingOverrides"></app-progress-mask>
 
