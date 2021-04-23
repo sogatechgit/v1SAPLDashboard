@@ -67,7 +67,6 @@ export class DataService {
 
   private _subConfig: Subscription;
   SetupData() {
-    console.log('\n###### SetupData ... ');
     setTimeout(() => (this.processing = true));
     this._subConfig = this.http.get(this.FormatURL(this.configURL)).subscribe(
       (data: any) => {
@@ -117,7 +116,6 @@ export class DataService {
 
   private _subAssets: Subscription;
   ReadAssets() {
-    console.log('\n###### Read Assets ... ');
     this.itemInfo = {}  // reset symbol info
     this._subAssets = this.http.get(this.FormatURL(this._assets_url)).subscribe(
       (data: any) => {
@@ -141,7 +139,6 @@ export class DataService {
   private _subOverrides: Subscription;
   ReadOverrides() {
     this.processing = true;
-    console.log('\n###### Read Overrides ... ');
     this.itemInfo = {}  // reset symbol info
     this._subOverrides = this.http
       .get(this.FormatURL(this._overrides_url))
@@ -150,7 +147,6 @@ export class DataService {
           this._subOverrides.unsubscribe();
           this._subOverrides = null;
           this._overrides = data;
-          console.log('this._overrides: ', this.overrides);
           this.ReadAnomalies();
         },
         (err) => {
@@ -208,7 +204,6 @@ export class DataService {
   }
 
   UpdateAssetStatus() {
-    console.log('!!! UpdateAssetStatus ...');
     const anoms = this._anomalies;
     const syms = this.symbols;
     // console.log("UpdateAssetSta anomalies(anoms): ",syms , anoms)
@@ -265,7 +260,6 @@ export class DataService {
     this.processing = false;
 
     if(this.dashboard){
-      console.log("##### handle resize!")
       this.dashboard.handleResize(null)}
 
   }

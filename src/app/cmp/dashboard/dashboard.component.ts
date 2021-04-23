@@ -90,7 +90,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // },4000)
   }
   ngAfterViewInit() {
-    console.log('After view init!');
     setTimeout(() => {
       this.ds.dashboard = this;
       this.handleResize(null);
