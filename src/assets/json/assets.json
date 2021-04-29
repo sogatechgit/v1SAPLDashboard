@@ -1,19 +1,29 @@
 {
   "symbols": [
     { "symId": "asd", "label" : "ASD", "assetId": 798, "treeLoc": "aaacabax", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "vgms", "label" : "VGMS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "psdv", "label" : "PSDV's", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "esdv", "label" : "ESDV's", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "vgms", "label" : "VGMS", "assetId": 255, "treeLoc": "aaacacaa", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "psdv", "label" : "PSDV's", "assetId": 117, "treeLoc": "aaadaa", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "esdv", "label" : "ESDV's", "assetId": 781, "treeLoc": "aaacab", "color": "", "override": "", "border": "", "anoms" : []},
+
+    { "symId": "r1c1", "label" : "", "assetId": 650, "treeLoc": "aaacacaaad", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r1c2", "label" : "", "assetId": 644, "treeLoc": "aaacacaaac", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r1c3", "label" : "", "assetId": 638, "treeLoc": "aaacacaaab", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r1c4", "label" : "", "assetId": 632, "treeLoc": "aaacacaaaa", "color": "", "override": "", "border": "", "anoms" : []},
+
+    { "symId": "r2c1", "label" : "", "assetId": 650, "treeLoc": "aaacacaaad", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r2c2", "label" : "", "assetId": 644, "treeLoc": "aaacacaaac", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r2c3", "label" : "", "assetId": 638, "treeLoc": "aaacacaaab", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "r2c4", "label" : "", "assetId": 632, "treeLoc": "aaacacaaaa", "color": "", "override": "", "border": "", "anoms" : []},
 
     { "symId": "riser8", "label" : "RISER 8", "assetId": 650, "treeLoc": "aaacacaaad", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "riser7", "label" : "RISER 7", "assetId": 644, "treeLoc": "aaacacaaac", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "riser6", "label" : "RISER 6", "assetId": 638, "treeLoc": "aaacacaaab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "riser5", "label" : "RISER 5", "assetId": 632, "treeLoc": "aaacacaaaa", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "spcu", "label" : "SPCU", "assetId": 594, "treeLoc": "aaaaaaab", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "spcu", "label" : "SPCU", "assetId": 253, "treeLoc": "aaaaaa", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "mcs", "label" : "MCS", "assetId": 598, "treeLoc": "aaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "hpu", "label" : "HPU", "assetId": 342, "treeLoc": "aaaaaaaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "meg", "label" : "MEG", "assetId": 786, "treeLoc": "aaaeaaaaaaag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "meg", "label" : "MEG", "assetId": 780, "treeLoc": "aaacaa", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "ci", "label" : "CI", "assetId": 785, "treeLoc": "aaaeaaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "swivel", "label" : "SWIVEL", "assetId": 790, "treeLoc": "aaaaabab", "color": "", "override": "", "border": "", "anoms" : []},
 
@@ -22,46 +32,50 @@
     { "symId": "umb_meg", "label" : "MEG", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "umb_chemical", "label" : "CHEMICAL", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "rbm", "label" : "RBM", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "rbm", "label" : "RBM", "assetId": 250, "treeLoc": "aaacaeac", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "esfl", "label" : "ESFL", "assetId": 612, "treeLoc": "aaaeaaaaabad", "color": "", "override": "", "border": "", "anoms" : []},
+
     { "symId": "uta", "label" : "UTA/UTAJ-1&2/HDM-1", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "efls", "label" : "EFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "sfls", "label" : "SFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "efls-2", "label" : "EFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "efls", "label" : "EFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "sfls", "label" : "SFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "efls-2", "label" : "EFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+
     { "symId": "sfls-2", "label" : "SFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "efls-3", "label" : "EFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+
     { "symId": "uta-2", "label" : "UTA-2<br/>HDM-2", "assetId": 620, "treeLoc": "aaaeaaaaabae", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "uta-3", "label" : "UTA-3<br/>EDM-1", "assetId": 630, "treeLoc": "aaaeaaaaabaf", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "optic", "label" : "FIBER OPTIC", "assetId": 849, "treeLoc": "aaaeabam", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "term", "label" : "TERM<br/>ASBLY", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "plet42", "label" : "PLET42", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "optic", "label" : "FIBER OPTIC", "assetId": 849, "treeLoc": "aaaeabam", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "term", "label" : "TERM<br/>ASBLY", "assetId": 851, "treeLoc": "aaaeabamab", "color": "", "override": "", "border": "", "anoms" : []},
+
+    { "symId": "plet42", "label" : "PLET42", "assetId": 339, "treeLoc": "aaacaeak", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "fl4", "label" : "FL4", "assetId": 330, "treeLoc": "aaacadabab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt4-2", "label" : "BT4-2", "assetId": 332, "treeLoc": "aaacadababab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt4-1", "label" : "BT4-1", "assetId": 331, "treeLoc": "aaacadababaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "plet41", "label" : "PLET41", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet41", "label" : "PLET41", "assetId": 337, "treeLoc": "aaacaeaj", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "ap4", "label" : "AP4", "assetId": 334, "treeLoc": "aaacadababad", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "plet32", "label" : "PLET32", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet32", "label" : "PLET32", "assetId": 327, "treeLoc": "aaacaeai", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "fl3", "label" : "FL3", "assetId": 319, "treeLoc": "aaacadabaa", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt3-2", "label" : "BT3-2", "assetId": 321, "treeLoc": "aaacadabaaab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt3-1", "label" : "BT3-1", "assetId": 320, "treeLoc": "aaacadabaaaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "plet31", "label" : "PLET31", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet31", "label" : "PLET31", "assetId": 325, "treeLoc": "aaacaeah", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "ap3", "label" : "AP3", "assetId": 323, "treeLoc": "aaacadabaaad", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "plet22", "label" : "PLET22", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet22", "label" : "PLET22", "assetId": 315, "treeLoc": "aaacaeag", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "fl2", "label" : "FL2", "assetId": 307, "treeLoc": "aaacadaaac", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt2-2", "label" : "BT2-2", "assetId": 309, "treeLoc": "aaacadaaacab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt2-1", "label" : "BT2-1", "assetId": 308, "treeLoc": "aaacadaaacaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "plet21", "label" : "PLET21", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet21", "label" : "PLET21", "assetId": 313, "treeLoc": "aaacaeaf", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "ap2", "label" : "AP2", "assetId": 311, "treeLoc": "aaacadaaacad", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "plet12", "label" : "PLET12", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet12", "label" : "PLET12", "assetId": 303, "treeLoc": "aaacaeae", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "fl1", "label" : "FL1", "assetId": 294, "treeLoc": "aaacadaaaa", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt1-2", "label" : "BT1-2", "assetId": 296, "treeLoc": "aaacadaaaaab", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "bt1-1", "label" : "BT1-1", "assetId": 295, "treeLoc": "aaacadaaaaaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "plet11", "label" : "PLET11", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "plet11", "label" : "PLET11", "assetId": 301, "treeLoc": "aaacaead", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "ap1", "label" : "AP1", "assetId": 298, "treeLoc": "aaacadaaaaad", "color": "", "override": "", "border": "", "anoms" : []},
 
     { "symId": "pmw", "label" : "PM-W`W1`W3`W6`W4", "assetId": 268, "treeLoc": "aaacaeabaa", "color": "", "override": "", "border": "", "anoms" : []},

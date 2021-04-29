@@ -1,26 +1,31 @@
 import { DataService } from './../../svc/data.service';
 import { IAssetStatusInfo } from './dashboard.component';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-anomalies-popup',
   templateUrl: './anomalies-popup.component.html',
   styleUrls: ['./anomalies-popup.component.scss'],
 })
-export class AnomaliesPopupComponent implements OnInit {
+export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AnomaliesPopupComponent>
-  ) {}
+  ) { }
 
-  @ViewChild('just') just  : ElementRef;
+  @ViewChild('just') just: ElementRef;
 
-  _ovrJust:string 
-  _ovrClr:number
+  _ovrJust: string
+  _ovrClr: number
   ngOnInit(): void {
     this._ovrClr = this.info.ovrClr;
     // this._ovrJust = this.info.ovrJust;
+  }
+
+  ngAfterViewInit() {
+    // console.log(this.data)
   }
 
   Close() {
@@ -28,28 +33,29 @@ export class AnomaliesPopupComponent implements OnInit {
   }
 
   SetOverride(value: number) {
-    if(value == this._ovrClr){
+    if (value == this._ovrClr) {
       // clear override
       this._ovrClr = -1;
-    }else{
+    } else {
       this._ovrClr = value;
     }
   }
 
   Submit() {
 
-    if(this.info.anoms.length == 0) return;
+    if (this.info.anoms.length == 0) return;
 
-    const ovrVal: number = this._ovrClr;
-    const ovrJust: string = this.just.nativeElement.value;
+    let ovrVal: number = this._ovrClr;
+    let ovrJust: string = this.just.nativeElement.value;
     const clear: boolean = ovrVal == -1;
 
     this.ds.PostOverride(
       this.info.assetId,
       ovrVal,
       ovrJust,
-      (event) => {
+      (event, symbols?) => {
         console.log('Override event: ', event);
+        const { body } = event;
         //this.ds.openSnackBar("Status override set: " + err.message,'x',3000)
         if (clear) {
           this.ds.openSnackBar(
@@ -59,23 +65,33 @@ export class AnomaliesPopupComponent implements OnInit {
           );
         } else {
           this.ds.openSnackBar(
-            `Status override for ${this.info.label} set to ${
-              this.ds.colorNames[ovrVal - 1]
+            `Status override for ${this.info.label} set to ${this.ds.colorNames[ovrVal - 1]
             }`,
             'x',
             3000
           );
         }
 
-        if (clear) {
-          this.info.ovrClr = -1;
-          this.info.override = '';
-          this.info.ovrJust = '';
+        ovrVal = clear ? -1 : body.clr;
+        ovrJust = clear ? '' : body.just;
+        let ovr = clear ? '' : this.ds.colors[ovrVal - 1];
+
+        if (symbols) {
+
+          symbols.forEach(sym => {
+            sym.ovrClr = ovrVal;
+            sym.override = ovr;
+            sym.ovrJust = ovrJust;
+          });
+
         } else {
+
           this.info.ovrClr = ovrVal;
-          this.info.override = this.ds.colors[ovrVal - 1];
+          this.info.override = ovr;
           this.info.ovrJust = ovrJust;
+
         }
+
 
         this.dialogRef.close();
       },
@@ -86,9 +102,14 @@ export class AnomaliesPopupComponent implements OnInit {
     );
   }
 
-  get withAnoms():boolean{
-    if(!this.info) return false;
-    if(!this.info.anoms) return false;
+  get title(): string {
+    if (this.data.linked) return this.data.linked.label.replace(/<br\/>/gi,' ');
+    return this.info.label.replace(/<br\/>/gi,' ');
+  }
+
+  get withAnoms(): boolean {
+    if (!this.info) return false;
+    if (!this.info.anoms) return false;
     return this.info.anoms.length != 0
   }
 

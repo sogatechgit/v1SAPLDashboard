@@ -61,7 +61,7 @@ export class DataService {
     this._show_anoms = value;
   }
 
-  public dashboard:DashboardComponent;
+  public dashboard: DashboardComponent;
 
   public processing: boolean = false;
 
@@ -259,8 +259,9 @@ export class DataService {
     this._dataReady = true;
     this.processing = false;
 
-    if(this.dashboard){
-      this.dashboard.handleResize(null)}
+    if (this.dashboard) {
+      this.dashboard.handleResize(null)
+    }
 
   }
 
@@ -322,7 +323,7 @@ export class DataService {
   }
 
   // back(symId: string): string {
-    override(symId: string): string {
+  override(symId: string): string {
     const info = this.info(symId);
     if (!info ? true : !info.color) {
       if (info && !info.color) {
@@ -335,7 +336,7 @@ export class DataService {
   }
 
   // override(symId: string): string {
-    back(symId: string): string {
+  back(symId: string): string {
     const info = this.info(symId);
     if (!info ? true : !info.override) return this.override(symId);
     return info.override;
@@ -387,8 +388,17 @@ export class DataService {
     return `${dy}-${this.mo(mo).substr(0, 3)}-${yr}`;
   }
 
-  ProcessClick(symId: string) {
+  ProcessClick(symId: string, linkedSymbolId?: string) {
+
     const info = this.info(symId);
+    if (!info) {
+      console.log(symId, this.symbols);
+
+      return;
+    }
+    //console.log(info); return;
+
+    const linkedSymbol = linkedSymbolId ? this.symbols.find(s => s.symId == linkedSymbolId) : null;
 
     const ref = this.dialog.open(AnomaliesPopupComponent, {
       minWidth: `800px`,
@@ -410,6 +420,7 @@ export class DataService {
         title: 'Anomalies',
         info: info,
         ds: this,
+        linked: linkedSymbol
         // buttons: buttons ? buttons : [],
         // icon: icon,
         // buttonClick: form.PromptButtonClick,
@@ -431,7 +442,7 @@ export class DataService {
   }
 
   public postingOverrides: boolean = false;
-  PostOverride(aid: any, clr: any,just:string , onSuccess: Function, onError: Function) {
+  PostOverride(aid: any, clr: any, just: string, onSuccess: Function, onError: Function) {
     this.postingOverrides = true;
     const fd = new FormData();
 
@@ -439,7 +450,10 @@ export class DataService {
     fd.append('clr', clr);
     fd.append('just', just);
 
-    console.log("Post Data: ",fd.get('aid'))
+    // console.log("Post Data: ", fd.get('aid'), this.symbols)
+
+    //
+    const assSyms = this.symbols.filter(sym => sym.assetId == aid)
 
     const obs = this.http.post(this._override_url, fd, {
       reportProgress: true,
@@ -450,7 +464,7 @@ export class DataService {
       (event) => {
         if (event.type === HttpEventType.Response) {
           const body: any = event.body;
-          onSuccess(event);
+          onSuccess(event, assSyms);
           this.postingOverrides = false;
         }
       },

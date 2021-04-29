@@ -1,9 +1,6 @@
-  <!-- main symbol -->
-  <div #cont [style.font-size.em]="fontFactor ? fontFactor : null"
-  (click)="SetOverride($event)"
-  [style.background]="ds.back(_id)"
-  [style.border-color]="ds.border(_id)"
-  [style.color]="ds.fore(_id)"
+<!-- main symbol -->
+<div #cont [style.font-size.em]="fontFactor ? fontFactor : null" (click)="SetOverride($event)"
+  [style.background]="ds.back(_id)" [style.border-color]="ds.border(_id)" [style.color]="ds.fore(_id)"
   [style.border-radius]="!round ? rad+'px' : '50%'">
   <span *ngIf="lblUL" id="ul">{{lblUL}}</span>
   <span *ngIf="lblUR" id="ur">{{lblUR}}</span>
@@ -11,16 +8,15 @@
   <span *ngIf="lblLL" id="ll">{{lblLL}}</span>
 
 
-  <div id="mid" 
-    [ngStyle]="{'writing-mode': vt ? 'vertical-rl':null,'text-orientation': vt ? 'upright':null}">
+  <div id="mid" [ngStyle]="{'writing-mode': vt ? 'vertical-rl':null,'text-orientation': vt ? 'upright':null}">
     <!-- inline override symbol -->
-    <i id="ovr" *ngIf="ds.ovr(_id) && !ovrBottom && !isVertical"
-      class="fa fa-certificate" [style.color]="ds.override(_id)"></i>
-     <span [innerHTML]="lbl"></span>
+    <i id="ovr" *ngIf="ds.ovr(_id) && !ovrBottom && !isVertical &&  lbl" class="fa fa-certificate"
+      [style.color]="ds.override(_id)"></i>
+    <span [innerHTML]="lbl"></span>
   </div>
-  
-    <!-- bottom or vertical override symbol -->
-    <div id="mb" *ngIf="ds.ovr(_id) && (ovrBottom || isVertical)">
+
+  <!-- bottom or vertical override symbol -->
+  <div id="mb" *ngIf="ds.ovr(_id) && (ovrBottom || isVertical) && lbl">
     <i id="ovr_out" class="fa fa-certificate" [style.color]="ds.override(_id)"></i>
   </div>
 

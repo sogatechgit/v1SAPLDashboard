@@ -43,6 +43,8 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
 
   @Input() ovrBottom: boolean;
 
+  @Input() linkedParentSymbolId: string;
+
   get isVertical(): boolean {
     if (!this.cont) return false;
     const ht = this.cont.nativeElement.clientHeight;
@@ -88,6 +90,6 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
   }
 
   SetOverride(event: any) {
-    this.ds.ProcessClick(this._id);
+    this.ds.ProcessClick(this._id, this.linkedParentSymbolId);
   }
 }
