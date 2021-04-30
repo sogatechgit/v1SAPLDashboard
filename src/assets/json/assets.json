@@ -27,10 +27,10 @@
     { "symId": "ci", "label" : "CI", "assetId": 785, "treeLoc": "aaaeaaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "swivel", "label" : "SWIVEL", "assetId": 790, "treeLoc": "aaaaabab", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "umb_power", "label" : "POWER/COMMS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_power", "label" : "POWER/COMMS", "assetId": 783, "treeLoc": "aaaeaaaaaaad", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "umb_hydraulic", "label" : "HYDRAULIC", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "umb_meg", "label" : "MEG", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "umb_chemical", "label" : "CHEMICAL", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_meg", "label" : "MEG", "assetId": 786, "treeLoc": "aaaeaaaaaaag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_chemical", "label" : "CHEMICAL", "assetId": 785, "treeLoc": "aaaeaaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
 
     { "symId": "rbm", "label" : "RBM", "assetId": 250, "treeLoc": "aaacaeac", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "esfl", "label" : "ESFL", "assetId": 612, "treeLoc": "aaaeaaaaabad", "color": "", "override": "", "border": "", "anoms" : []},
