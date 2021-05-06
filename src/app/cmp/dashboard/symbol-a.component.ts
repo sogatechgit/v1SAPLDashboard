@@ -32,12 +32,28 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
   @Input() lblLL: string = '';
   @Input() lblLR: string = '';
 
+  @Input() lblTop:boolean;
+  @Input() lblBottom:boolean;
+  @Input() lblLeft:boolean;
+  @Input() lblRight:boolean;
+
+  @Input() labelOnly:boolean;
+
+
+  @Input() cw90:boolean;
+
+
   @Input() locid: number;
 
   @Input() vt: boolean;
   @Input() rad: number = 0;
 
   @Input() round: boolean = false;
+
+  @Input() backColor: string;
+  @Input() foreColor: string;
+
+  @Input() noFill: boolean = false;
 
   @Input() fontFactor: number;
 
@@ -55,6 +71,22 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
 
   get info(): IAssetStatusInfo {
     return this.ds.info(this._id);
+  }
+
+  get back(): string {
+    if (this.backColor) return this.backColor;
+    return this.noFill ? 'none' : this.ds.back(this._id);
+    // return this.ds.back(this._id);
+  }
+
+  get fore(): string {
+    if (this.foreColor) return this.foreColor;
+    return this.ds.fore(this._id);
+  }
+
+  get border(): string {
+    return this.noFill ? this.ds.back(this._id) : this.ds.border(this._id);
+
   }
 
   private _lblChecked: boolean = false;
@@ -78,7 +110,7 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
     return this._lbl;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   ngAfterViewInit() {
     // this.handleResize(null);
     // console.log('sub:', this.sub.nativeElement.clientHeight);

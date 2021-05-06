@@ -17,8 +17,8 @@
     color-adjust: exact;
     box-sizing: border-box;
 
-    border-width: 2px;
-    border-style: solid;
+    // border-width: 2px;
+    // border-style: solid;
 
     height: 100%;
     width: 100%;
@@ -28,7 +28,7 @@
     place-content: center;
     text-align: center;
 
-    grid-template: 1fr auto 1fr / 1fr auto 1fr;
+    grid-template: 1fr auto 1fr / 1fr auto 1fr auto;
 
     #mid {
       grid-column: 2;
@@ -38,9 +38,46 @@
         margin-right: 0.2em;
         text-shadow: 0px 0px 3px #555;
         font-size: 0.85em;
-
       }
     }
+
+    #lbl_right {
+      //font-family: ;
+      justify-self: end;
+      grid-column: 4;
+      grid-row: 2;
+      writing-mode: vertical-rl;
+      text-orientation: sideways;
+      // margin-right:-10px;
+
+      font-family: "Futura-Book";
+      font-size:1em;
+      font-weight:bold;
+      color:grey;
+
+      background-color: lime;
+      padding:0px;
+
+      // line-height: .8em;
+      
+    }
+
+    .cw90{
+      writing-mode: vertical-rl;
+      text-orientation: sideways;
+      font-weight:bold;
+      color:grey;
+    }
+
+    // #umb {
+    //   grid-row: 15 / -1;
+    //   grid-column: 23;
+    //   writing-mode: vertical-rl;
+    //   text-orientation: sideways;
+    //   justify-self: center;
+    //   align-self: center;
+    // }
+
     #ul {
       grid-column: 1;
       grid-row: 1;
@@ -79,7 +116,6 @@
         margin-top: 0.2em;
         text-shadow: 0px 0px 3px #555;
         font-size: 0.85em;
-
       }
     }
     #mb {
@@ -154,7 +190,14 @@
     }
 
     transition: 0.2s;
-  }
+    #nofill_box{
+      border-width: 2px;
+      border-style: solid;
+
+      grid-row:1 / -1;
+      grid-column: 1 / -1;
+    }
+  } // root div
 
   > div:hover {
     transform: translate(1px, -1px);

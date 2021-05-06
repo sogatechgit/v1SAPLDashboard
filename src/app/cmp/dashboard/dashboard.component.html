@@ -82,15 +82,18 @@
 
         <app-symbol-a class="hor-b" id="swivel" [rad]="rad" fontFactor="1.2"></app-symbol-a>
 
-        <app-symbol-a id="umb_power" class="ver-c ver-c1" vt=true></app-symbol-a>
-        <app-symbol-a id="umb_hydraulic" class="ver-c ver-c2" vt=true>
+        <app-symbol-a id="umb_power" backColor="gray" foreColor="white" class="ver-c ver-c1" vt=true></app-symbol-a>
+        <app-symbol-a id="umb_hydraulic" backColor="gray" foreColor="white" class="ver-c ver-c2" vt=true>
         </app-symbol-a>
-        <app-symbol-a id="umb_meg" class="ver-c ver-c3" vt=true></app-symbol-a>
-        <app-symbol-a id="umb_chemical" class="ver-c ver-c4" vt=true>
-        </app-symbol-a>
+        <app-symbol-a id="umb_meg" backColor="gray" foreColor="white" class="ver-c ver-c3" vt=true></app-symbol-a>
+        <app-symbol-a id="umb_chemical" backColor="gray" foreColor="white" class="ver-c ver-c4" vt=true></app-symbol-a>
 
-        <div id="dash">&nbsp;</div>
-        <div id="umb">UMBILICAL</div>
+        <app-symbol-a id="umb" linkedParentSymbolId="umb_txt" [rad]="rad" noFill="true"></app-symbol-a>
+        <app-symbol-a id="umb_txt" cw90="true" noFill="true" labelOnly="true" foreColor="black"></app-symbol-a>
+
+
+        <!-- <div id="dash">&nbsp;</div>
+        <div id="umb">UMBILICAL</div> -->
 
       </div>
 
@@ -113,16 +116,23 @@
         <app-symbol-b id="pj01" [hor]=true lblL=true></app-symbol-b>
 
         <div id="uta_grid">
-          <app-symbol-a id="uta" [rad]="rad" fontFactor="1.2"></app-symbol-a>
-          <app-symbol-a id="efls" vt=true>EFLS</app-symbol-a>
-          <app-symbol-a id="sfls" vt=true>SFLS</app-symbol-a>
-          <app-symbol-a id="efls-2" vt=true>EFLS</app-symbol-a>
+
+          <app-symbol-a id="sfls-3" vt=true></app-symbol-a>
+
+
+          <app-symbol-a id="hdm-1" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+          <app-symbol-a id="utaj" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+          <app-symbol-a id="uta-1" [rad]="rad" fontFactor="1.2"></app-symbol-a>
+
+          <app-symbol-a id="sfls-1" vt=true></app-symbol-a>
+          <app-symbol-a id="sfls" vt=true></app-symbol-a>
+          <app-symbol-a id="efls-2" vt=true></app-symbol-a>
 
           <app-symbol-a id="uta-2" ovrBottom="true" [rad]="rad"></app-symbol-a>
           <app-symbol-a id="uta-3" ovrBottom="true" [rad]="rad"></app-symbol-a>
 
-          <app-symbol-a id="sfls-2" vt=true>SFLS</app-symbol-a>
-          <app-symbol-a id="efls-3" vt=true>EFLS</app-symbol-a>
+          <app-symbol-a id="sfls-2" vt=true></app-symbol-a>
+          <app-symbol-a id="efls-3" vt=true></app-symbol-a>
           <app-symbol-a id="optic" vt=true></app-symbol-a>
           <app-symbol-a id="term" [rad]="rad"></app-symbol-a>
         </div>

@@ -54,6 +54,8 @@ export class DataService {
   private _overrides_url: string;
   private _override_url: string;
   private _show_anoms: boolean;
+  private _log_post: boolean;
+
   get showAnoms(): boolean {
     return this._show_anoms != undefined ? this._show_anoms : false;
   }
@@ -78,6 +80,7 @@ export class DataService {
           override_url,
           overrides_url,
           show_anoms,
+          broadcast_all_override_post_events
         } = data;
 
         this._anomalies_url = anomalies_url;
@@ -85,6 +88,7 @@ export class DataService {
         this._override_url = override_url;
         this._overrides_url = overrides_url;
         this._show_anoms = show_anoms;
+        this._log_post = broadcast_all_override_post_events;
 
         console.log('CONFIG PATHS: ', data);
 
@@ -467,13 +471,15 @@ export class DataService {
           onSuccess(event, assSyms);
           this.postingOverrides = false;
         }
+        if(this._log_post) console.log("RawEvent from server: ", event);
       },
       (err) => {
+        console.log("Error from server: ", err);
         onError(err);
         this.postingOverrides = false;
       },
       () => {
-        console.log('Override Complete!');
+        console.log('***** Override Complete! *****');
         subs.unsubscribe();
         this.postingOverrides = false;
       }

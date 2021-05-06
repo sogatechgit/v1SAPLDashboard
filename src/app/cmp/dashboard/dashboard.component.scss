@@ -38,7 +38,7 @@ $ft_rows: 3;
 $ht_parts: #{$h_parts + $ah_parts};
 
 ::ng-deep .custom-class .mat-simple-snackbar {
-  font-family:"Futura-Book";
+  font-family: "Futura-Book";
   color: white;
 }
 
@@ -445,7 +445,7 @@ $padxp: 30%;
 
 #dist_grid {
   grid-row: 6 / span 37;
-  grid-column: 80 / span 30;
+  grid-column: 89 / span 30;
 
   #spcu,
   #mcs,
@@ -517,14 +517,28 @@ $padxp: 30%;
     grid-row: 15 / -1;
     grid-column: 11 / span 12;
   }
+
   #umb {
-    grid-row: 15 / -1;
-    grid-column: 23;
-    writing-mode: vertical-rl;
-    text-orientation: sideways;
-    justify-self: center;
-    align-self: center;
+    grid-row: 15 / span 23;
+    grid-column: 11 / span 12;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    // margin-right:1.6em;
   }
+
+  #umb_txt{
+    grid-row: 15 / span 23;
+    grid-column: 23 / span 2;
+  }
+
+  // #umb {
+  //   grid-row: 15 / -1;
+  //   grid-column: 23;
+  //   writing-mode: vertical-rl;
+  //   text-orientation: sideways;
+  //   justify-self: center;
+  //   align-self: center;
+  // }
 
   .ver-c {
     padding-top: 4px;
@@ -607,13 +621,26 @@ $padxp: 30%;
     display: grid;
     grid-template: repeat(35, 1fr) / repeat(28, 1fr);
 
-    #uta {
-      grid-column: 3 / span 22;
+    #hdm-1 {
+      grid-column: 3 / span 8;
       grid-row: 1 / span 5;
       z-index: 2;
     }
 
-    #efls {
+    #utaj {
+      grid-column: 11 / span 5;
+      grid-row: 1 / span 5;
+      z-index: 2;
+      margin-left: 0.3em;
+      margin-right: 0.3em;
+    }
+    #uta-1 {
+      grid-column: 16 / span 9;
+      grid-row: 1 / span 5;
+      z-index: 2;
+    }
+
+    #sfls-1 {
       padding: 0px 3px;
       grid-row: 4 / span 10;
       grid-column: 2 / span 3;
@@ -627,14 +654,14 @@ $padxp: 30%;
     #sfls {
       padding: 0.15em 0.25em 0em 0.25em;
       grid-row: 6 / span 10;
-      grid-column: 6 / span 3;
+      grid-column: 5 / span 3;
       z-index: 0;
     }
 
     #efls-2 {
       padding: 0.15em 0.25em 0em 0.25em;
       grid-row: 6 / span 10;
-      grid-column: 16 / span 3;
+      grid-column: 18 / span 3;
       z-index: 0;
     }
 
@@ -655,6 +682,16 @@ $padxp: 30%;
       padding: 0px 3px;
       grid-row: 19 / span 10;
       grid-column: 3 / span 3;
+      z-index: 0;
+
+      transform: rotate(40deg);
+      transform-origin: 20% 13%;
+    }
+
+    #sfls-3 {
+      padding: 0px 3px;
+      grid-row: 4 / span 16;
+      grid-column: 16 / span 3;
       z-index: 0;
 
       transform: rotate(40deg);
@@ -929,7 +966,7 @@ $padxp: 30%;
 
     span {
       grid-column: 2 / -1;
-      grid-row:1 / span 2;
+      grid-row: 1 / span 2;
     }
 
     #dosb,

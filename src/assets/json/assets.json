@@ -27,22 +27,31 @@
     { "symId": "ci", "label" : "CI", "assetId": 785, "treeLoc": "aaaeaaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "swivel", "label" : "SWIVEL", "assetId": 790, "treeLoc": "aaaaabab", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "umb_power", "label" : "POWER/COMMS", "assetId": 783, "treeLoc": "aaaeaaaaaaad", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb", "label" : "", "assetId": 847, "treeLoc": "aaaeaa", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_txt", "label" : "UMBILICAL", "assetId": 847, "treeLoc": "aaaeaa", "color": "", "override": "", "border": "", "anoms" : []},
+
+    { "symId": "umb_power", "label" : "POWER/COMMS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "umb_hydraulic", "label" : "HYDRAULIC", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "umb_meg", "label" : "MEG", "assetId": 786, "treeLoc": "aaaeaaaaaaag", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "umb_chemical", "label" : "CHEMICAL", "assetId": 785, "treeLoc": "aaaeaaaaaaaf", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_meg", "label" : "MEG", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "umb_chemical", "label" : "CHEMICAL", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
 
     { "symId": "rbm", "label" : "RBM", "assetId": 250, "treeLoc": "aaacaeac", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "esfl", "label" : "ESFL", "assetId": 612, "treeLoc": "aaaeaaaaabad", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "uta", "label" : "UTA/UTAJ-1&2/HDM-1", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "hdm-1", "label" : "HDM-1", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "utaj", "label" : "UTAJ<br/>1&2", "assetId": 611, "treeLoc": "aaaeabai", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "uta-1", "label" : "UTA-1", "assetId": 601, "treeLoc": "aaaeaaaaabac", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "efls", "label" : "EFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "sfls", "label" : "SFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "efls-2", "label" : "EFLS", "assetId": 609, "treeLoc": "aaaeabag", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "sfls-1", "label" : "SFLS", "assetId": 194, "treeLoc": "aaadagabaj", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "sfls", "label" : "SFLS", "assetId": 610, "treeLoc": "aaaeabah", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "efls-2", "label" : "EFLS", "assetId": 606, "treeLoc": "aaaeabad", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "sfls-2", "label" : "SFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "efls-3", "label" : "EFLS", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "sfls-2", "label" : "SFLS", "assetId": 143, "treeLoc": "aaadaaabaj", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "efls-3", "label" : "EFLS", "assetId": 289, "treeLoc": "aaacaeacaaal", "color": "", "override": "", "border": "", "anoms" : []},
+
+    { "symId": "sfls-3", "label" : "SFLS", "assetId": 604, "treeLoc": "aaaeabab", "color": "", "override": "", "border": "", "anoms" : []},
+
+    
 
     { "symId": "uta-2", "label" : "UTA-2<br/>HDM-2", "assetId": 620, "treeLoc": "aaaeaaaaabae", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "uta-3", "label" : "UTA-3<br/>EDM-1", "assetId": 630, "treeLoc": "aaaeaaaaabaf", "color": "", "override": "", "border": "", "anoms" : []},
