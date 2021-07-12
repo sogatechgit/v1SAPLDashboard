@@ -118,10 +118,11 @@
     { "symId": "_11wj301", "label" : "11-WJ-301", "assetId": 157, "treeLoc": "aaadacad", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "_11wj101", "label" : "11-WJ-101", "assetId": 140, "treeLoc": "aaadaaac", "color": "", "override": "", "border": "", "anoms" : []},
 
-    { "symId": "dosb", "label" : "DOSB", "assetId": 2254, "treeLoc": "aaafaa", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
-    { "symId": "dof", "label" : "DOF", "assetId": 2257, "treeLoc": "aaafad", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
-    { "symId": "tfmcd", "label" : "TFMC-D", "assetId": 2256, "treeLoc": "aaafac", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
-    { "symId": "tfmch", "label" : "TFMC-H", "assetId": 2255, "treeLoc": "aaafab", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
+    { "symId": "scm1", "label" : "408", "assetId": 2254, "treeLoc": "aaafaa", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
+    { "symId": "scm2", "label" : "418", "assetId": 2257, "treeLoc": "aaafad", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
+    { "symId": "fm1", "label" : "420", "assetId": 2256, "treeLoc": "aaafac", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
+    { "symId": "fm2", "label" : "1", "assetId": 2255, "treeLoc": "aaafab", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
+    { "symId": "fm3", "label" : "2", "assetId": 2254, "treeLoc": "aaafab", "color": "", "override": "", "border": "","spare":true, "anoms" : []},
     { "symId": "", "label" : "", "assetId": 1, "treeLoc": "", "color": "", "override": "", "border": "", "anoms" : []}
   ]
 }

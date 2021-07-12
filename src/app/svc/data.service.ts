@@ -177,6 +177,8 @@ export class DataService {
             .replace(/"ID":/gi, '"id":')
             .replace(/"REF":/gi, '"ref":')
             .replace(/"TIT":/gi, '"tit":')
+            .replace(/"COMM":/gi, '"comm":')
+            .replace(/"WON":/gi, '"won":')
             .replace(/"DESC":/gi, '"desc":')
             .replace(/"IDENT":/gi, '"ident":')
             .replace(/"CLR":/gi, '"clr":')
@@ -295,6 +297,33 @@ export class DataService {
       this._AnomList = list;
     }
     return this._AnomList ? this._AnomList : [];
+  }
+
+  private _AnomListNoGreenWithWON: Array<IAnomalyInfo> = [];
+  private _AnomListNoGreen: Array<IAnomalyInfo>;
+  get AnomListNoGreen(): Array<IAnomalyInfo> {
+    if (!this._dataReady) return [];
+    const anoms = this.AnomList;
+    if (this._AnomListNoGreen == undefined && this._AnomList) {
+      this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
+      this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
+
+      console.log("AnomListNoGreen: ", this._AnomListNoGreen.length, ", AnomListNoGreenWithWON: ", this._AnomListNoGreenWithWON.length)
+    }
+
+    return this._AnomListNoGreen ? this._AnomListNoGreen : [];
+  }
+
+  get AnomListNoGreenWithWON(): Array<IAnomalyInfo> {
+    return this._AnomListNoGreenWithWON;
+  }
+
+  private _AnomListSourceWithWON: boolean = false;
+  set AnomListSourceWithWON(value: boolean) {
+    this._AnomListSourceWithWON = value;
+  }
+  get AnomListSource(): Array<IAnomalyInfo> {
+    return this._AnomListSourceWithWON ? this.AnomListNoGreenWithWON : this.AnomListNoGreen;
   }
 
   private _overrides: Array<IOverride>;
@@ -471,7 +500,7 @@ export class DataService {
           onSuccess(event, assSyms);
           this.postingOverrides = false;
         }
-        if(this._log_post) console.log("RawEvent from server: ", event);
+        if (this._log_post) console.log("RawEvent from server: ", event);
       },
       (err) => {
         console.log("Error from server: ", err);

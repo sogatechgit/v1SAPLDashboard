@@ -39,6 +39,8 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
 
   @Input() labelOnly:boolean;
 
+  @Input() fixedColor:string;
+
 
   @Input() cw90:boolean;
 
@@ -85,7 +87,9 @@ export class SymbolAComponent implements OnInit, AfterViewInit {
   }
 
   get border(): string {
-    return this.noFill ? this.ds.back(this._id) : this.ds.border(this._id);
+    
+    return this.fixedColor  ? this.fixedColor : this.ds.back(this._id) ;
+    // return this.noFill ? this.ds.back(this._id) : this.ds.border(this._id);
 
   }
 

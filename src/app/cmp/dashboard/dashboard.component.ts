@@ -7,6 +7,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-dashboard',
@@ -67,6 +68,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   get noAnomDetails(): boolean {
+    // return true;
     return !this.ds.showAnoms;
   }
 
@@ -103,7 +105,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ToggleAnom() {
+  ToggleAnom(withWON?: boolean) {
+    if (withWON == undefined) withWON = false;
+
+    this.ds.AnomListSourceWithWON = withWON;
+
     this.ds.showAnoms = !this.ds.showAnoms;
     setTimeout(() => this.handleResize(null));
   }
@@ -139,7 +145,7 @@ export interface IAssetStatusInfo {
   override?: string;
   ovrClr?: number;
 
-  ovrJust?:string;
+  ovrJust?: string;
 
   color?: string;
   border?: string;
@@ -168,5 +174,7 @@ export interface IAnomalyInfo {
   clr: number;
   desc: string;
   ident: string;
+  won?: string;
+  comm?: string;
   ovr?: number;
 }

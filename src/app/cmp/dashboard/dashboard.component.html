@@ -1,9 +1,9 @@
 <div #main_wrapper id="main_wrapper" [style.font-size.em]="fontFactor()" *ngIf="ds.symbols.length">
 
   <div id="details_band">
-    <div id="details_wrapper" #details_wrapper [ngClass]="{no_text:noAnomDetails}">
+    <div id="details_wrapper" #details_wrapper [ngClass]="{no_text:true}">
 
-      <div id="section_band" [ngClass]="{no_text:noAnomDetails}">
+      <div id="section_band" [ngClass]="{no_text:true}">
         <div>
           <div>PRODUCTION SYSTEM</div>
           <div><span>&nbsp;</span>
@@ -11,30 +11,45 @@
             <div>
               <span><i class="fa fa-print" (click)="Print()"></i></span>
               <span><i class="fa fa-sync-alt" matTooltip="Reload..." (click)="Reload()"></i></span>
-              <span><i [class]="'fa fa-chevron-circle-' + (noAnomDetails ? 'right' : 'left')"
+              <!-- <span><i [class]="'fa fa-chevron-circle-' + (noAnomDetails ? 'left' : 'left')"
                   (click)="ToggleAnom()"  [matTooltip]="(noAnomDetails ? 'Show' : 'Hide')+' anomalies list...'"></i></span>
-              </div>
+              </div> -->
+              <span><i class="fa fa-chevron-circle-left" (click)="ToggleAnom()"
+                  matTooltip="Show anomalies list..."></i></span>
+              <span><i class="fa fa-chevron-circle-left" (click)="ToggleAnom(true)"
+                  matTooltip="Show anomalies list with WON..."></i></span>
+            </div>
           </div>
         </div>
         <div *ngIf="!noAnomDetails">
           <div>COMMENTARY</div>
-          <div>IDENTIFIED</div>
+          <div><span>IDENTIFIED</span>
+            <i class="fa fa-chevron-circle-right" (click)="ToggleAnom()" matTooltip="Hide anomalies list..."></i>
+          </div>
         </div>
+        <!-- <div *ngIf="true">
+          <div>COMMENTARY</div>
+          <div>IDENTIFIED</div>
+        </div>         -->
       </div>
 
       <div id="topside_band">TOPSIDE</div>
       <div id="risers_band">RISERs / UMBILICAL</div>
       <div id="subsea_band">SUBSEA</div>
+
       <div id="anom_grid" *ngIf="!noAnomDetails" #anom_grid>
         <ng-container *ngTemplateOutlet="anomList"></ng-container>
       </div>
 
       <div id="footer_band">
-        <span>Legend for XMas Trees:</span>
-        <div>&nbsp;</div>
-        <span>Yellow border, choke issues</span>
-        <div>&nbsp;</div>
-        <span>Yellow fill, for external XMas Tree issues</span>
+        <div id="isni">&nbsp;</div>
+        <span>IN SERVICE, NO ISSUES</span>
+        <div id="isf">&nbsp;</div>
+        <span>IN SERVICE, FAULTS</span>
+        <div id="oos">&nbsp;</div>
+        <span>OUT OF SERVICE</span>
+        <div id="up">&nbsp;</div>
+        <span>UNDER PRESERVATION</span>
       </div>
 
       <div id="rcv_grid">
@@ -196,10 +211,10 @@
         <div id="pmw_grid">
           <app-symbol-a id="pmw" [rad]="rad" fontFactor="1.1">
           </app-symbol-a>
-          <app-symbol-a id="p5" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="p4" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="p6" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="p7" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p5" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
+          <app-symbol-a id="p4" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
+          <app-symbol-a id="p6" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
+          <app-symbol-a id="p7" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
 
           <app-symbol-b id="_12wj101" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
           <app-symbol-b id="_12wj301" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
@@ -211,9 +226,9 @@
 
         <div id="pme_grid">
           <app-symbol-a id="pme" [rad]="rad" fontFactor="1.1"></app-symbol-a>
-          <app-symbol-a id="p3" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="p8" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="p1" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="p3" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
+          <app-symbol-a id="p8" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
+          <app-symbol-a id="p1" [rad]="rad" ovrBottom=true fixedColor="#008443"></app-symbol-a>
 
           <app-symbol-b id="_11wj401" ver=true lblR=true fontFactor="0.85"></app-symbol-b>
 
@@ -224,10 +239,13 @@
 
         <div id="spares_grid">
           <span>CAPITAL SPARES</span>
-          <app-symbol-a id="dosb" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="dof" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="tfmcd" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="tfmch" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <div id="scm">SCM</div>
+          <div id="fm">FM</div>
+          <app-symbol-a id="scm1" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="scm2" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="fm1" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="fm2" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="fm3" [rad]="rad" ovrBottom=true></app-symbol-a>
         </div>
 
       </div>
@@ -244,7 +262,8 @@
   </div> -->
 
 
-</div> <!--main wrapper-->
+</div>
+<!--main wrapper-->
 
 <h2 class="break">Break0</h2>
 
@@ -257,13 +276,14 @@
 </div>
 
 <ng-template #anomList>
-  <div *ngFor="let item of ds.AnomList">
+  <!-- <div *ngFor="let item of ds.AnomList"> -->
+  <div *ngFor="let item of ds.AnomListSource">
     <div><span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
-      <span class="refLink" (click)="ds.OpenAnomaly(item.id)"  matTooltip="Click to open anomaly record...">[{{item.ref}}]</span> {{item.ass}} {{item.tit}}.
+        <span class="refLink" (click)="ds.OpenAnomaly(item.id)"
+          matTooltip="Click to open anomaly record...">[{{item.ref}}]</span> {{item.ass}} {{item.tit}}. {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}
       </span><span [innerHTML]="ds.FormatDesc(item.desc)"></span></div>
     <div [innerHTML]="ds.dateStr(item.ident)"></div>
   </div>
 </ng-template>
 
-<app-progress-mask  *ngIf="ds.processing" prompt="Loading data. Please wait..."></app-progress-mask>
-
+<app-progress-mask *ngIf="ds.processing" prompt="Loading data. Please wait..."></app-progress-mask>
