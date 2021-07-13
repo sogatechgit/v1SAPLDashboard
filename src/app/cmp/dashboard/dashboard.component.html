@@ -22,7 +22,7 @@
           </div>
         </div>
         <div *ngIf="!noAnomDetails">
-          <div>COMMENTARY</div>
+          <div>COMMENTARY{{withWON ? ' (w/ WO#)' : ''}}</div>
           <div><span>IDENTIFIED</span>
             <i class="fa fa-chevron-circle-right" (click)="ToggleAnom()" matTooltip="Hide anomalies list..."></i>
           </div>
@@ -280,8 +280,12 @@
   <div *ngFor="let item of ds.AnomListSource">
     <div><span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
         <span class="refLink" (click)="ds.OpenAnomaly(item.id)"
-          matTooltip="Click to open anomaly record...">[{{item.ref}}]</span> {{item.ass}} {{item.tit}}. {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}
-      </span><span [innerHTML]="ds.FormatDesc(item.desc)"></span></div>
+          matTooltip="Click to open anomaly record...">[{{item.ref}}]</span>
+          <i class="addnotes fas fa-file-alt" (click)="ds.NotesClick(item)" matTooltip="Add/Edit notes ..."></i> {{item.tit}}.</span>
+          <span *ngIf="item.comm">{{item.comm}}</span>
+          <span> {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}</span>
+      <!-- <span [innerHTML]="ds.FormatDesc(item.desc)"></span> -->
+    </div>
     <div [innerHTML]="ds.dateStr(item.ident)"></div>
   </div>
 </ng-template>

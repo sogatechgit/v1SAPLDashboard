@@ -3193,7 +3193,7 @@
    "DESC": "No readings have been measured by the VGMS units since production began in late December 2018.\nRemedial action is required to enable continuous on-line monitoring of flexible riser annulus space.",
    "IDENT": "20190701",
    "WON": "60899023",
-   "COMM": "",
+   "COMM": "This is a sample additional commentary!",
    "CLR": 3,
    "OVR": -1
  },

@@ -105,6 +105,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  get withWON():boolean{
+    return this.ds.AnomListSourceWithWON;
+  }
+
   ToggleAnom(withWON?: boolean) {
     if (withWON == undefined) withWON = false;
 
@@ -144,6 +148,7 @@ export interface IAssetStatusInfo {
 
   override?: string;
   ovrClr?: number;
+  ovrUP?: number;
 
   ovrJust?: string;
 

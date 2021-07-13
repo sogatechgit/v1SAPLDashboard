@@ -61,7 +61,7 @@ $normal_outline: 1px solid white;
     grid-row: 2 / 3;
     display: grid;
     gap: 5px;
-    grid-template: auto 1fr auto auto auto / auto 1fr auto auto auto;
+    grid-template: auto 1fr auto auto auto / auto 1fr auto auto auto auto auto;
 
     align-items: center;
 
@@ -73,7 +73,8 @@ $normal_outline: 1px solid white;
       // text-align: right;
     }
 
-    #lbl_ovr {
+    
+    #lbl_upsw, #lbl_ovr {
       text-align: right;
     }
 
@@ -88,6 +89,10 @@ $normal_outline: 1px solid white;
 
     #ora {
       color: orange;
+    }
+
+    #upsw {
+      color: #b4d5ff;
     }
     #ovr_just {
       padding: 5px;
@@ -143,24 +148,26 @@ $normal_outline: 1px solid white;
           background-color: #c7cdd3;
         }
 
-        
         &.disabled {
           cursor: not-allowed;
-          &:hover{
-            background-color:inherit;
+          &:hover {
+            background-color: inherit;
           }
         }
-
-
       }
     }
 
     #grn,
     #yel,
-    #ora {
+    #ora,
+    #upsw {
       font-size: 1.5em;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    #upsw{
+      margin-right:10px;
     }
 
     .disable {

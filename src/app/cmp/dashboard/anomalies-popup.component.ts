@@ -17,10 +17,13 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
 
   @ViewChild('just') just: ElementRef;
 
-  _ovrJust: string
-  _ovrClr: number
+  _ovrJust: string;
+  _ovrClr: number;
+  _ovrUP: number = 0;
+
   ngOnInit(): void {
     this._ovrClr = this.info.ovrClr;
+    this._ovrUP = this.info.ovrUP;
     // this._ovrJust = this.info.ovrJust;
   }
 
@@ -41,22 +44,30 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     }
   }
 
+  ToggleUP(){
+    this._ovrUP = this._ovrUP ? 0 : 1;
+  }
+
   Submit() {
 
-    if (this.info.anoms.length == 0) return;
+    //if (this.info.anoms.length == 0) return;
+    const noAnom = (this.info.anoms.length == 0);
 
-    let ovrVal: number = this._ovrClr;
-    let ovrJust: string = this.just.nativeElement.value;
+    let ovrVal: number =noAnom ? -1 : this._ovrClr;
+    let ovrUP: number = this._ovrUP;
+    let ovrJust: string =noAnom ? '' : this.just.nativeElement.value;
     const clear: boolean = ovrVal == -1;
 
     this.ds.PostOverride(
       this.info.assetId,
       ovrVal,
       ovrJust,
+      ovrUP,
       (event, symbols?) => {
         console.log('Override event: ', event);
         const { body } = event;
         //this.ds.openSnackBar("Status override set: " + err.message,'x',3000)
+        this.info.ovrUP = this._ovrUP;
         if (clear) {
           this.ds.openSnackBar(
             `Status override for ${this.info.label} removed`,
@@ -64,6 +75,7 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
             3000
           );
         } else {
+          
           this.ds.openSnackBar(
             `Status override for ${this.info.label} set to ${this.ds.colorNames[ovrVal - 1]
             }`,
@@ -111,6 +123,14 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     if (!this.info) return false;
     if (!this.info.anoms) return false;
     return this.info.anoms.length != 0
+  }
+
+  UPClass():any{
+    return {
+      fa: true,
+      'fa-toggle-off': this._ovrUP == null || this._ovrUP == undefined || this._ovrUP == 0, 
+      'fa-toggle-on': this._ovrUP == 1,
+    }
   }
 
   SwitchClass(value: number): any {

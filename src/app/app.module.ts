@@ -13,6 +13,7 @@ import { SymbolBComponent } from './cmp/dashboard/symbol-b.component';
 import { SymbolCComponent } from './cmp/dashboard/symbol-c.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressMaskComponent } from './cmp/progress-mask/progress-mask.component';
+import { NotesPopupComponent } from './cmp/dashboard/notes-popup.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProgressMaskComponent } from './cmp/progress-mask/progress-mask.compone
     SymbolBComponent,
     SymbolCComponent,
     AnomaliesPopupComponent,
-    ProgressMaskComponent
+    ProgressMaskComponent,
+    NotesPopupComponent
   ],
   imports: [
     BrowserModule,

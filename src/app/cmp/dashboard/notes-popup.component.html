@@ -1,0 +1,16 @@
+<h2 #heading mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <i class="fa fa-file-alt" style="text-shadow: 0px 0px 1px white;" [style.color]="ds.CL_LIGHT_BLUE"></i>
+    <!-- <div id="swatch" [style.background-color]="info.color ? info.color : info.spare ? ds.CL_LIGHT_BLUE : ds.CL_GREEN">&nbsp;</div> -->
+    <span style="overflow: hidden; white-space: nowrap;" [matTooltip]="'[' + info.ref +']  ' + info.tit">[{{info.ref}}] {{info.tit}}</span>
+    <i class="fa fa-times" (click)="dialogRef.close();" matTooltip="Close..."></i>
+</h2>
+<div id="details">
+
+    <label for="ovr_comm">Please enter commentary:</label>
+    <textarea #comm id="anom_comm" cols="80" rows="7" [innerHTML]="info.comm"></textarea>
+    <div id="actions">
+        <button (click)="dialogRef.close();">Cancel</button>
+        <button (click)="Submit()">Accept</button>
+    </div>
+
+</div>

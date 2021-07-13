@@ -7,10 +7,13 @@
 <div id="details">
   
   <span id="lbl_just">Override Justification:</span>
+  <span id="lbl_upsw">Under Preservation:</span>
+  <i id="upsw" matTooltip="Toggle under prservation status..." [ngClass]="UPClass()" (click)="ToggleUP()"></i>
   <span id="lbl_ovr">Applied Override:</span>
   <i id="grn" matTooltip="Set status override to GREEN..." [ngClass]="SwitchClass(1)" (click)="SetOverride(1)"></i>
   <i id="yel" matTooltip="Set status override to YELLOW.." [ngClass]="SwitchClass(2)" (click)="SetOverride(2)"></i>
   <i id="ora" matTooltip="Set status override to ORANGE..." [ngClass]="SwitchClass(3)" (click)="SetOverride(3)"></i>
+
 
   <div id="col_head">
     <span>Commentary</span>
@@ -31,8 +34,9 @@
   <textarea *ngIf="withAnoms" name="ovr_just" #just id="ovr_just" cols="80" rows="4" [innerHTML]="this.info.ovrJust"></textarea>
 
   <div  id="actions">
-    <button *ngIf="withAnoms" (click)="Submit()">Accept</button>
-    <button *ngIf="!withAnoms" class="disabled" disabled>Accept</button>
+    <button (click)="Submit()">Accept</button>
+    <!-- <button *ngIf="withAnoms" (click)="Submit()">Accept</button> -->
+    <!-- <button *ngIf="!withAnoms" class="disabled" disabled>Accept</button> -->
     <button (click)="Close()">Cancel</button>
   </div>
 

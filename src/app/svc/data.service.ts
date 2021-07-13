@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { syntaxError } from '@angular/compiler';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppModule } from '../app.module';
+import { NotesPopupComponent } from '../cmp/dashboard/notes-popup.component';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +55,7 @@ export class DataService {
   private _anomalies_url: string;
   private _overrides_url: string;
   private _override_url: string;
+  private _commentary_url: string;
   private _show_anoms: boolean;
   private _log_post: boolean;
 
@@ -79,6 +82,7 @@ export class DataService {
           assets_url,
           override_url,
           overrides_url,
+          commentary_url,
           show_anoms,
           broadcast_all_override_post_events
         } = data;
@@ -86,6 +90,7 @@ export class DataService {
         this._anomalies_url = anomalies_url;
         this._assets_url = assets_url;
         this._override_url = override_url;
+        this._commentary_url = commentary_url;
         this._overrides_url = overrides_url;
         this._show_anoms = show_anoms;
         this._log_post = broadcast_all_override_post_events;
@@ -305,8 +310,23 @@ export class DataService {
     if (!this._dataReady) return [];
     const anoms = this.AnomList;
     if (this._AnomListNoGreen == undefined && this._AnomList) {
-      this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
-      this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
+      const incAnom = {};
+      const noGreens = this._AnomList.filter(anom => anom.clr != 1);
+
+      const anoms:IAnomalyInfo[] = [];
+      const anomsWons:IAnomalyInfo[] = [];
+      noGreens.forEach(an=>{
+        if(!incAnom['an_' + an.id]){
+          incAnom['an_' + an.id] = true
+          anoms.push(an);
+          if(an.won) anomsWons.push(an);
+        }
+      })
+      this._AnomListNoGreen = anoms;
+      this._AnomListNoGreenWithWON = anomsWons;
+      
+      // this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
+      // this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
 
       console.log("AnomListNoGreen: ", this._AnomListNoGreen.length, ", AnomListNoGreenWithWON: ", this._AnomListNoGreenWithWON.length)
     }
@@ -321,6 +341,9 @@ export class DataService {
   private _AnomListSourceWithWON: boolean = false;
   set AnomListSourceWithWON(value: boolean) {
     this._AnomListSourceWithWON = value;
+  }
+  get AnomListSourceWithWON():boolean{
+    return this._AnomListSourceWithWON;
   }
   get AnomListSource(): Array<IAnomalyInfo> {
     return this._AnomListSourceWithWON ? this.AnomListNoGreenWithWON : this.AnomListNoGreen;
@@ -358,6 +381,8 @@ export class DataService {
   // back(symId: string): string {
   override(symId: string): string {
     const info = this.info(symId);
+    if(info && info.ovrUP) return this.CL_LIGHT_BLUE;
+
     if (!info ? true : !info.color) {
       if (info && !info.color) {
         return info.spare ? this.CL_LIGHT_BLUE : this.CL_GREEN;
@@ -370,7 +395,10 @@ export class DataService {
 
   // override(symId: string): string {
   back(symId: string): string {
+    
     const info = this.info(symId);
+    if(info && info.ovrUP) return this.CL_LIGHT_BLUE;
+
     if (!info ? true : !info.override) return this.override(symId);
     return info.override;
   }
@@ -378,6 +406,7 @@ export class DataService {
   ovr(symId: string): boolean {
     const info = this.info(symId);
     if (!info ? true : !info.override) return false;
+    if(info.ovrUP) return false;
     return true;
   }
 
@@ -419,6 +448,22 @@ export class DataService {
 
     // return `${mo}-${str.substr(4,2)}-${yr}`;
     return `${dy}-${this.mo(mo).substr(0, 3)}-${yr}`;
+  }
+
+  NotesClick(anom:IAnomalyInfo){
+    console.log("Asset id: ",anom.id,anom.won);
+    const ref = this.dialog.open(NotesPopupComponent, {
+      minWidth: `480px`,
+      maxWidth: '480px',
+      maxHeight: `240px`,
+      minHeight: `240px`,
+      disableClose: true,
+      data: {
+        title: 'Commentary',
+        info: anom,
+        ds: this
+      },
+    });
   }
 
   ProcessClick(symId: string, linkedSymbolId?: string) {
@@ -474,14 +519,52 @@ export class DataService {
     }
   }
 
+  public postingNotes: boolean = false;
+  PostNotes(anomObj:IAnomalyInfo, comment:string, onSuccess: Function, onError: Function){
+    this.postingNotes = true;
+    const fd = new FormData();
+
+    fd.append('anomid', anomObj.id);
+    fd.append('comm', comment);
+
+    const obs = this.http.post(this._commentary_url, fd, {
+      reportProgress: true,
+      observe: 'events',
+    });
+
+    const subs = obs.subscribe(
+      (event) => {
+        if (event.type === HttpEventType.Response) {
+          const body: any = event.body;
+          onSuccess(event, anomObj);
+          this.postingNotes = false;
+        }
+        if (this._log_post) console.log("RawEvent from server: ", event);
+      },
+      (err) => {
+        console.log("Error from server: ", err);
+        onError(err);
+        this.postingNotes = false;
+      },
+      () => {
+        console.log('***** Commentary Complete! *****');
+        subs.unsubscribe();
+        this.postingNotes = false;
+      }
+    );
+
+
+  }
+
   public postingOverrides: boolean = false;
-  PostOverride(aid: any, clr: any, just: string, onSuccess: Function, onError: Function) {
+  PostOverride(aid: any, clr: any, just: string, up:number, onSuccess: Function, onError: Function) {
     this.postingOverrides = true;
     const fd = new FormData();
 
     fd.append('aid', aid);
     fd.append('clr', clr);
     fd.append('just', just);
+    fd.append('up', String(up));
 
     // console.log("Post Data: ", fd.get('aid'), this.symbols)
 

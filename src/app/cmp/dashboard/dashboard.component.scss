@@ -332,6 +332,26 @@ $ht_parts: #{$h_parts + $ah_parts};
     .refLink {
       cursor: pointer;
     }
+    .addnotes{
+      cursor: pointer;
+      margin-left:5px;
+      // margin-right:5px;
+      opacity: 0.1;
+      color: gray;
+      transition: 0.5s;
+
+    }
+    .addnotes:hover{
+      opacity: 1;
+      color: $bs_info;
+    }
+
+    .addnotes{
+      @media print {
+        display: none;
+      }
+    }
+
     .refLink:hover {
       text-decoration: underline;
     }

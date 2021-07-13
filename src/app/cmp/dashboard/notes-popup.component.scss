@@ -1,0 +1,136 @@
+$focus_border: 1px solid #9abee3;
+$focus_outline: 1px solid white;
+$focus_shadow: 1px 1px 5px #9abee3;
+
+$normal_border: 1px solid #ced4da;
+$normal_outline: 1px solid white;
+
+:host {
+    height: 100% !important;
+    // background-color: lime !important;
+    margin: 0px !important;
+    display: grid !important;
+
+    // rows: header, details
+    // colum: all
+    grid-template: 2.2em 1fr / 1fr !important;
+
+    font-family: "Futura-Book";
+
+    font-size: 0.8em;
+
+    h2 {
+        grid-row: 1;
+        grid-column: 1 / -1;
+
+        background-color: #3b5999;
+        font-size: 1.2em;
+        cursor: move;
+        color: white;
+        display: grid !important;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        margin: 0px !important;
+        i {
+            margin: 0px 10px 0px 10px;
+        }
+        > i:nth-child(3) {
+            cursor: pointer;
+        }
+        #swatch {
+            height: 1.1em;
+            width: 1.1em;
+            // background: red;
+            border-radius: 50%;
+        }
+
+        span{
+            font-size:0.75em;
+            text-overflow: ellipsis;
+        }
+    }
+
+    #details {
+        font-size: 1.1em;
+        padding: 10px;
+        grid-column: 1 / -1;
+        grid-row: 2 / -1;
+        display: grid;
+        gap: 5px;
+        grid-template: auto 1fr auto / 1fr;
+
+        align-items: center;
+
+        #anom_comm {
+            padding: 5px;
+            grid-row: 2;
+            grid-column: 1 / -1;
+            border: $normal_border;
+            outline: $normal_outline;
+            border-radius: 5px;
+
+            font-family: "Futura-Book";
+            resize: none;
+        }
+        #anom_comm:focus {
+            outline: $focus_outline;
+            border: $focus_border;
+        }
+
+        #actions {
+            grid-column: 1 /-1;
+            grid-row: -1;
+
+            display: grid;
+            gap: 5px;
+            grid-template: 1fr / 1fr 1fr;
+            place-content: center;
+
+            // margin:10px;
+            padding: 10px 100px 10px 100px;
+            padding-top: 0px;
+            button {
+                font-family: "Futura-Book";
+                padding: 4px;
+                // margin:2px;
+                border-radius: 8px;
+
+                cursor: pointer;
+
+                border: $normal_border;
+                outline: $normal_outline;
+
+                transition: 0.2s;
+
+                &:focus {
+                    border: $focus_border;
+                    outline: $focus_outline;
+                }
+
+                &:hover {
+                    //outline: 1px solid #c0c0c0;
+                    //background-color: red;
+                    border: $focus_border;
+                    outline: $focus_outline;
+                    background-color: #c7cdd3;
+                }
+
+                &.disabled {
+                    cursor: not-allowed;
+                    &:hover {
+                        background-color: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep.mat-dialog-container {
+    // resize: both;
+    padding: 0px !important;
+    overflow: hidden;
+    display: grid;
+    grid-template: 1fr / 1fr;
+    // height:100%;
+}

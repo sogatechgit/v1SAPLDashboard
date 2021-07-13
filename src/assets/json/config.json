@@ -6,6 +6,7 @@
 	"overrides_url-x":"http://soga-alv/IMSAWeb/Pages/SAPLDash/assets/json/overrides.json",
 	"override_url-y":"./../override.aspx",
 	"override_url":"http://soga-alv/IMSAWeb/statusoverride.aspx",
+	"commentary_url":"http://soga-alv/IMSAWeb/commentaryoverride.aspx",
 	"show_anoms":false,
 	"broadcast_all_override_post_events":true
 }
