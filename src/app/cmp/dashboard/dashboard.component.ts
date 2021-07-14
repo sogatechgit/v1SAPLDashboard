@@ -41,6 +41,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('main_wrapper') main_wrapper: any;
   @ViewChild('prnAnoms') prnAnoms: any;
 
+  @ViewChild('mainMenu') mainMenu:ElementRef;
+
   constructor(public ds: DataService, private elRef: ElementRef) {
     // console.log("host: ",elRef.nativeElement)
   }
@@ -95,6 +97,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.ds.dashboard = this;
       this.handleResize(null);
+
+      setTimeout(()=>console.log("mainMenu : ", this.mainMenu),5000)
     });
 
     const det = this.details_wrapper.nativeElement;
@@ -107,7 +111,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   get anomClass():any{
     return {
-      with_spare:false
+      with_spare:true
     }
   }
 
@@ -134,7 +138,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   Print() {
     console.log('Print diagram...');
-    window.print();
+    setTimeout(()=>window.print())
+    
   }
 
   // OpenAnomaly(anomid: any) {

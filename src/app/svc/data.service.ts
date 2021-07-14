@@ -398,7 +398,7 @@ export class DataService {
   }
 
   // override(symId: string): string {
-  back(symId: string): string {
+  back(symId: string,linkedId?:string): string {
 
     const info = this.info(symId);
     if (info && info.ovrUP) return this.CL_LIGHT_BLUE;

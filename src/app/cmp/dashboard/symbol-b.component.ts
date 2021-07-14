@@ -40,6 +40,7 @@ export class SymbolBComponent implements OnInit, AfterViewInit {
   @Input() lblL: boolean = false;
 
   @Input() lineWidth: number = 0.1;
+  @Input() linkedId: string = "";
 
   @Input() horOff: number = 1;
   @Input() verOff: number = 1;

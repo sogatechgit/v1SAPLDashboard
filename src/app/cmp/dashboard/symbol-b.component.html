@@ -10,16 +10,16 @@
 </div>
 
 <div id="left"  *ngIf="ul || ll">
-  <div [ngClass]="{dashed:dashed}" [style.border-color]="ds.back(_id)"></div>
+  <div [ngClass]="{dashed:dashed}" [style.border-color]="ds.back(_id,linkedId)"></div>
 </div>
 <div id="right" *ngIf="ur || lr">
-  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)" ></div>
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id,linkedId)" ></div>
 </div>
 <div id="top"  *ngIf="ul || ur">
-  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)"></div>
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id,linkedId)"></div>
 </div>
 <div id="bottom"  *ngIf="ll || lr">
-  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id)"></div>
+  <div [ngClass]="{dashed:dashed}"[style.border-color]="ds.back(_id,linkedId)"></div>
 </div>
 
 <div id="a_ul" [style.font-size.em]="ff" *ngIf="ul"  (click)="SetOverride($event)"><ng-container *ngTemplateOutlet="tempOVR"></ng-container><span [innerHTML]="lbl"></span></div>
