@@ -37,7 +37,7 @@
       <div id="risers_band">RISERs / UMBILICAL</div>
       <div id="subsea_band">SUBSEA</div>
 
-      <div id="anom_grid" *ngIf="!noAnomDetails" #anom_grid>
+      <div id="anom_grid" [ngClass]="anomClass" *ngIf="!noAnomDetails" #anom_grid>
         <ng-container *ngTemplateOutlet="anomList"></ng-container>
       </div>
 
@@ -243,9 +243,9 @@
           <div id="fm">FM</div>
           <app-symbol-a id="scm1" [rad]="rad" ovrBottom=true></app-symbol-a>
           <app-symbol-a id="scm2" [rad]="rad" ovrBottom=true></app-symbol-a>
+          <app-symbol-a id="scm3" [rad]="rad" ovrBottom=true></app-symbol-a>
           <app-symbol-a id="fm1" [rad]="rad" ovrBottom=true></app-symbol-a>
           <app-symbol-a id="fm2" [rad]="rad" ovrBottom=true></app-symbol-a>
-          <app-symbol-a id="fm3" [rad]="rad" ovrBottom=true></app-symbol-a>
         </div>
 
       </div>
@@ -278,12 +278,16 @@
 <ng-template #anomList>
   <!-- <div *ngFor="let item of ds.AnomList"> -->
   <div *ngFor="let item of ds.AnomListSource">
-    <div><span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
+    <div>
+      <span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
         <span class="refLink" (click)="ds.OpenAnomaly(item.id)"
           matTooltip="Click to open anomaly record...">[{{item.ref}}]</span>
-          <i class="addnotes fas fa-file-alt" (click)="ds.NotesClick(item)" matTooltip="Add/Edit notes ..."></i> {{item.tit}}.</span>
-          <span *ngIf="item.comm">{{item.comm}}</span>
-          <span> {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}</span>
+        <i *ngIf="false" class="addnotes fas fa-file-alt" (click)="ds.NotesClick(item)"
+          matTooltip="Add/Edit notes ..."></i>
+        <span id="an_title" matTooltip="Click to Add/Edit notes ..." (click)="ds.NotesClick(item)">{{item.tit}}.</span>
+      </span>
+      <span *ngIf="item.comm">{{item.comm}}</span>
+      <span> {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}</span>
       <!-- <span [innerHTML]="ds.FormatDesc(item.desc)"></span> -->
     </div>
     <div [innerHTML]="ds.dateStr(item.ident)"></div>

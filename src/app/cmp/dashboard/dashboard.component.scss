@@ -36,6 +36,7 @@ $col_dist_fr: #{$col_dist / $h_parts};
 
 $hd_rows: 3;
 $ft_rows: 3;
+$sp_rows: 12;
 
 $ht_parts: #{$h_parts + $ah_parts};
 
@@ -294,11 +295,18 @@ $ht_parts: #{$h_parts + $ah_parts};
     #anom_grid {
       // grid-column: #{$h_parts + 1} / -1;
       grid-column: #{$h_parts - $ah_parts} / -1;
+      grid-row: 4 / #{-1 - $ft_rows};
+
       z-index: 50;
 
-      grid-row: 4 / #{-1 - $ft_rows};
-      background-color: white;
+      // background-color: white;
+      background-color: olive;
+
       overflow-y: auto;
+
+      &.with_spare{
+        grid-row: 4 / #{-1 - $ft_rows - $sp_rows};
+      }
 
       @media print {
         display: none;
@@ -351,7 +359,15 @@ $ht_parts: #{$h_parts + $ah_parts};
         display: none;
       }
     }
-
+    
+    #an_title{
+      cursor: pointer;
+      margin-left:10px;
+      margin-right:10px;
+    }
+    #an_title:hover{
+      text-shadow: #dedede 1px 1px;
+    }
     .refLink:hover {
       text-decoration: underline;
     }
@@ -1076,7 +1092,7 @@ $padxp: 30%;
     #scm2,
     #fm1,
     #fm2,
-    #fm3 {
+    #scm3 {
       grid-row: 5 / span 3;
       grid-column: span 5;
       margin-left: 0.8em;

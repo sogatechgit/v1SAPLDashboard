@@ -37,9 +37,21 @@ export class NotesPopupComponent implements OnInit {
       (event, symbols?) => {
         console.log('Override event: ', event);
         const { body } = event;
+        const { status, error } = body;
+        const { id } = this.info;
 
-        this.ds.openSnackBar( `Anomaly commentary saved.`, 'x', 3000);
+        if(status == 'success'){
+          this.ds.openSnackBar( `Anomaly commentary saved.`, 'x', 3000);
 
+          const allAnoms = this.ds._AnomList.filter(anom=>(anom.id == id));
+          allAnoms.forEach(an=>an.comm = commentary);
+
+          console.log("Update anomaly recs: ", allAnoms, this.ds._AnomList, this.info, id);
+
+
+        }else{
+          this.ds.openSnackBar( `Error posting commentary. ${error}`, 'x', 3000);
+        }
 
         this.dialogRef.close();
       },

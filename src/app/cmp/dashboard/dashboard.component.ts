@@ -105,6 +105,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  get anomClass():any{
+    return {
+      with_spare:false
+    }
+  }
+
   get withWON():boolean{
     return this.ds.AnomListSourceWithWON;
   }
@@ -147,7 +153,7 @@ export interface IAssetStatusInfo {
   treeLoc: string;
 
   override?: string;
-  ovrClr?: number;
+  ovrClr?: number; 
   ovrUP?: number;
 
   ovrJust?: string;
@@ -166,6 +172,7 @@ export interface IOverride {
   aid: number;
   clr: number;
   just: string;
+  up?: number;
 }
 
 export interface IAnomalyInfo {

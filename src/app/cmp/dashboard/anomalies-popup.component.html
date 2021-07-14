@@ -25,7 +25,7 @@
       <div><span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;"><span class="refLink"
             (click)="ds.OpenAnomaly(item.id,dialogRef)"
             matTooltip="Click to open anomaly record...">[{{item.ref}}]</span> {{item.ass}} {{item.tit}}.
-        </span><span [innerHTML]="ds.FormatDesc(item.desc)"></span></div>
+        </span><span [innerHTML]="details(item)"></span></div>
       <div [innerHTML]="ds.dateStr(item.ident)"></div>
     </div>
   </div>
@@ -44,5 +44,5 @@
 </div>
 
 
-<app-progress-mask id="mask" *ngIf="ds.postingOverrides"></app-progress-mask>
+<app-progress-mask id="mask" *ngIf="ds.postingOverrides" prompt="Saving override details. Please wait..."></app-progress-mask>
 

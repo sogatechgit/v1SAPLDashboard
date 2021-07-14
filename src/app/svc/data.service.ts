@@ -228,10 +228,12 @@ export class DataService {
       const ovr = ovrs.find((o) => o.aid == sym.assetId);
       if (ovr) {
         sym.ovrClr = ovr.clr;
+        sym.ovrUP = ovr.up;
         sym.ovrJust = ovr.just;
         sym.override = this.colors[ovr.clr - 1];
       } else {
         sym.ovrJust = '';
+        sym.ovrUP = 0;
         sym.ovrClr = null;
         sym.override = '';
       }
@@ -313,18 +315,18 @@ export class DataService {
       const incAnom = {};
       const noGreens = this._AnomList.filter(anom => anom.clr != 1);
 
-      const anoms:IAnomalyInfo[] = [];
-      const anomsWons:IAnomalyInfo[] = [];
-      noGreens.forEach(an=>{
-        if(!incAnom['an_' + an.id]){
+      const anoms: IAnomalyInfo[] = [];
+      const anomsWons: IAnomalyInfo[] = [];
+      noGreens.forEach(an => {
+        if (!incAnom['an_' + an.id]) {
           incAnom['an_' + an.id] = true
           anoms.push(an);
-          if(an.won) anomsWons.push(an);
+          if (an.won) anomsWons.push(an);
         }
       })
       this._AnomListNoGreen = anoms;
       this._AnomListNoGreenWithWON = anomsWons;
-      
+
       // this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
       // this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
 
@@ -342,7 +344,7 @@ export class DataService {
   set AnomListSourceWithWON(value: boolean) {
     this._AnomListSourceWithWON = value;
   }
-  get AnomListSourceWithWON():boolean{
+  get AnomListSourceWithWON(): boolean {
     return this._AnomListSourceWithWON;
   }
   get AnomListSource(): Array<IAnomalyInfo> {
@@ -381,11 +383,13 @@ export class DataService {
   // back(symId: string): string {
   override(symId: string): string {
     const info = this.info(symId);
-    if(info && info.ovrUP) return this.CL_LIGHT_BLUE;
+    if (info && info.ovrUP) return this.CL_LIGHT_BLUE;
 
     if (!info ? true : !info.color) {
       if (info && !info.color) {
-        return info.spare ? this.CL_LIGHT_BLUE : this.CL_GREEN;
+        // default
+        // return info.spare ? this.CL_LIGHT_BLUE : this.CL_GREEN;
+        return this.CL_GREEN;
       } else {
         return this.CL_GREEN;
       }
@@ -395,9 +399,9 @@ export class DataService {
 
   // override(symId: string): string {
   back(symId: string): string {
-    
+
     const info = this.info(symId);
-    if(info && info.ovrUP) return this.CL_LIGHT_BLUE;
+    if (info && info.ovrUP) return this.CL_LIGHT_BLUE;
 
     if (!info ? true : !info.override) return this.override(symId);
     return info.override;
@@ -406,7 +410,7 @@ export class DataService {
   ovr(symId: string): boolean {
     const info = this.info(symId);
     if (!info ? true : !info.override) return false;
-    if(info.ovrUP) return false;
+    if (info.ovrUP) return false;
     return true;
   }
 
@@ -450,8 +454,8 @@ export class DataService {
     return `${dy}-${this.mo(mo).substr(0, 3)}-${yr}`;
   }
 
-  NotesClick(anom:IAnomalyInfo){
-    console.log("Asset id: ",anom.id,anom.won);
+  NotesClick(anom: IAnomalyInfo) {
+    console.log("Asset id: ", anom.id, anom.won);
     const ref = this.dialog.open(NotesPopupComponent, {
       minWidth: `480px`,
       maxWidth: '480px',
@@ -520,7 +524,7 @@ export class DataService {
   }
 
   public postingNotes: boolean = false;
-  PostNotes(anomObj:IAnomalyInfo, comment:string, onSuccess: Function, onError: Function){
+  PostNotes(anomObj: IAnomalyInfo, comment: string, onSuccess: Function, onError: Function) {
     this.postingNotes = true;
     const fd = new FormData();
 
@@ -557,7 +561,7 @@ export class DataService {
   }
 
   public postingOverrides: boolean = false;
-  PostOverride(aid: any, clr: any, just: string, up:number, onSuccess: Function, onError: Function) {
+  PostOverride(aid: any, clr: any, just: string, up: number, onSuccess: Function, onError: Function) {
     this.postingOverrides = true;
     const fd = new FormData();
 

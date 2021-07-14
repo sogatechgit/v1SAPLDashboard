@@ -1,5 +1,5 @@
 import { DataService } from './../../svc/data.service';
-import { IAssetStatusInfo } from './dashboard.component';
+import { IAnomalyInfo, IAssetStatusInfo } from './dashboard.component';
 import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
@@ -123,6 +123,10 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     if (!this.info) return false;
     if (!this.info.anoms) return false;
     return this.info.anoms.length != 0
+  }
+
+  details(item:IAnomalyInfo):string{
+    return this.ds.FormatDesc(item.desc);
   }
 
   UPClass():any{
