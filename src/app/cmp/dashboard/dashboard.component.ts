@@ -119,6 +119,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return this.ds.AnomListSourceWithWON;
   }
 
+  get withSpare():boolean{
+    return this.ds.AnomListSpare.length != 0;
+  }
+
   ToggleAnom(withWON?: boolean) {
     if (withWON == undefined) withWON = false;
 

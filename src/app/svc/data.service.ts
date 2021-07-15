@@ -10,7 +10,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { syntaxError } from '@angular/compiler';
+import { sharedStylesheetJitUrl, syntaxError } from '@angular/compiler';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppModule } from '../app.module';
 import { NotesPopupComponent } from '../cmp/dashboard/notes-popup.component';
@@ -124,6 +124,8 @@ export class DataService {
   }
 
   private _subAssets: Subscription;
+  private _spareAssets: Array<IAssetStatusInfo>;
+
   ReadAssets() {
     this.itemInfo = {}  // reset symbol info
     this._subAssets = this.http.get(this.FormatURL(this._assets_url)).subscribe(
@@ -133,6 +135,8 @@ export class DataService {
         const { symbols } = data;
 
         this._symbols = data.symbols;
+
+        this._spareAssets = this._symbols.filter(ass => ass.spare)
 
         this.ReadOverrides();
       },
@@ -308,6 +312,8 @@ export class DataService {
 
   private _AnomListNoGreenWithWON: Array<IAnomalyInfo> = [];
   private _AnomListNoGreen: Array<IAnomalyInfo>;
+  private _AnomListSpare: Array<IAnomalyInfo>;
+
   get AnomListNoGreen(): Array<IAnomalyInfo> {
     if (!this._dataReady) return [];
     const anoms = this.AnomList;
@@ -317,15 +323,27 @@ export class DataService {
 
       const anoms: IAnomalyInfo[] = [];
       const anomsWons: IAnomalyInfo[] = [];
+      const anomsSpare: IAnomalyInfo[] = [];
       noGreens.forEach(an => {
         if (!incAnom['an_' + an.id]) {
           incAnom['an_' + an.id] = true
-          anoms.push(an);
-          if (an.won) anomsWons.push(an);
+
+          const isSpare = this._spareAssets.find(as => as.assetId == an.aid) ? true : false;
+          if (!isSpare) {
+            anoms.push(an);
+            if (an.won) anomsWons.push(an);
+          } else {
+            anomsSpare.push(an);
+          }
+
         }
       })
       this._AnomListNoGreen = anoms;
       this._AnomListNoGreenWithWON = anomsWons;
+      this._AnomListSpare = anomsSpare;
+
+      // console.log("anomsSpare: ", anomsSpare,this._spareAssets);
+
 
       // this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
       // this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
@@ -349,6 +367,11 @@ export class DataService {
   }
   get AnomListSource(): Array<IAnomalyInfo> {
     return this._AnomListSourceWithWON ? this.AnomListNoGreenWithWON : this.AnomListNoGreen;
+  }
+
+  get AnomListSpare(): Array<IAnomalyInfo> {
+    return this._AnomListSpare;
+
   }
 
   private _overrides: Array<IOverride>;
@@ -398,7 +421,7 @@ export class DataService {
   }
 
   // override(symId: string): string {
-  back(symId: string,linkedId?:string): string {
+  back(symId: string, linkedId?: string): string {
 
     const info = this.info(symId);
     if (info && info.ovrUP) return this.CL_LIGHT_BLUE;

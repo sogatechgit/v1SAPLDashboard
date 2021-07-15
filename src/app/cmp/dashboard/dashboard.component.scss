@@ -20,14 +20,12 @@ $ah_parts_less: $ah_parts;
 // $h_parts: 118;
 $h_parts: 118;
 
-
 $v_parts: 88;
 $v_parts_prn: 108;
 
 $col_dist: 80;
 
 $iden_parts: 15;
-
 
 $comm_perc_num: #{100 * ($ah_parts - $iden_parts) / $ah_parts};
 
@@ -71,15 +69,18 @@ $ht_parts: #{$h_parts + $ah_parts};
     display: none;
   }
   @media print {
-
-    
-
     .break {
       display: inline-block;
       page-break-before: always;
     }
     #anom_grid_sep {
-      display: grid;
+
+      // display: grid;
+
+      // set display to grid if anomaly list is required on sparate sheet(s) when printing
+      display: none;        
+
+
       // page-break-before: always;
 
       > div {
@@ -284,8 +285,8 @@ $ht_parts: #{$h_parts + $ah_parts};
         @media print {
           &.withAnom {
             grid-column: #{$h_parts - $ah_parts + 10} / -1;
-            >div:nth-child(1){
-              margin-left:2px;
+            > div:nth-child(1) {
+              margin-left: 2px;
             }
           }
           // grid-column: #{$ht_parts - $ah_parts - 20} / -1;
@@ -354,56 +355,64 @@ $ht_parts: #{$h_parts + $ah_parts};
         }
       }
     } // section_band
-    #anom_grid {
-      // grid-column: #{$h_parts + 1} / -1;
+
+    #anom_grid_wrapper {
       grid-column: #{$h_parts - $ah_parts} / -1;
       grid-row: 4 / #{-1 - $ft_rows};
 
+      border:1px solid #c0c0c0;
       z-index: 50;
-
+      padding:5px;
       background-color: white;
-      background-color: olive;
-      
-      box-sizing:border-box;
-      border:1px solid red;
-
-      overflow-y: auto;
-
-      &.with_spare {
-        grid-row: 4 / #{-1 - $ft_rows - $sp_rows};
-      }
 
       @media print {
-        //display: none;
-        $ah_parts: 20;
         grid-column: #{$h_parts} / -1;
-        #anom_grid.visible_list {
-          // grid-column: #{$h_parts + 1} / -1;
-        }
       }
 
-      > div {
-        display: grid;
-        grid-template-columns: $comm_perc auto;
-        grid-auto-rows: max-content;
+      display: grid;
+      grid-template: 1fr auto auto / 1fr;
 
-        align-content: start;
-        > div:nth-child(odd) {
-          // Commentary
-          // background-color: lime;
-          border-bottom: 1px solid #c0c0c0;
-        }
-        > div:nth-child(even) {
-          // Date Identified
-          text-align: center;
-          border-bottom: 1px solid #c0c0c0;
-        }
+      #anom_grid_spare_label{
+        // spares label
+        //border-bottom: $bs_secondary;
+        background-color: #efefef;
+        padding:3px;
+        display: grid;
+        justify-items: center;
+      }
+
+      #anom_grid, #anom_grid_spare{
+        overflow: auto;
 
         > div {
-          padding: 0.4em;
-          box-sizing: border-box;
-          margin-bottom: 0.2em;
+          display: grid;
+          grid-template-columns: $comm_perc auto;
+          grid-auto-rows: max-content;
+
+          align-content: start;
+          > div:nth-child(odd) {
+            // Commentary
+            // background-color: lime;
+            border-bottom: 1px solid #c0c0c0;
+          }
+          > div:nth-child(even) {
+            // Date Identified
+            text-align: center;
+            border-bottom: 1px solid #c0c0c0;
+          }
+
+          > div {
+            padding: 0.4em;
+            box-sizing: border-box;
+            margin-bottom: 0.2em;
+          }
         }
+
+      }
+
+      #anom_grid_spare{
+        // spare anomalies pannel
+        height:120px;
       }
     }
 

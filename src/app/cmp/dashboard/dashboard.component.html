@@ -4,7 +4,7 @@
     <div id="details_wrapper" #details_wrapper [ngClass]="{no_text:true,withAnom:ds.showAnoms}">
 
       <div id="section_band" [ngClass]="{no_text:true,withAnom:ds.showAnoms}">
-        <div  [ngClass]="{withAnom:ds.showAnoms}">
+        <div [ngClass]="{withAnom:ds.showAnoms}">
           <div>PRODUCTION SYSTEM</div>
           <div>
             <span>&nbsp;</span>
@@ -33,8 +33,7 @@
         <div [ngClass]="{withAnom:ds.showAnoms}" *ngIf="!noAnomDetails">
           <div>COMMENTARY{{withWON ? ' (w/ WO#)' : ''}}</div>
           <div><span>IDENTIFIED</span>
-            <i class="fas fa-print" style="font-size: 13px;" (click)="Print()"
-              matTooltip="Print ..."></i>
+            <i class="fas fa-print" style="font-size: 13px;" (click)="Print()" matTooltip="Print ..."></i>
             <i class="fas fa-times-circle" style="font-size: 13px;margin-right: 4px;" (click)="ToggleAnom()"
               matTooltip="Close list..."></i>
           </div>
@@ -49,8 +48,16 @@
       <div id="risers_band">RISERs / UMBILICAL</div>
       <div id="subsea_band">SUBSEA</div>
 
-      <div id="anom_grid" [ngClass]="anomClass" *ngIf="!noAnomDetails" #anom_grid>
-        <ng-container *ngTemplateOutlet="anomList"></ng-container>
+      <div id="anom_grid_wrapper" *ngIf="!noAnomDetails">
+        <div id="anom_grid">
+          <ng-container *ngTemplateOutlet="anomList"></ng-container>
+        </div>
+
+        <div id="anom_grid_spare_label" *ngIf="withSpare">SPARES</div>
+        <div id="anom_grid_spare" *ngIf="withSpare">
+          <ng-container *ngTemplateOutlet="anomListSpare"></ng-container>
+        </div>
+        
       </div>
 
       <div id="footer_band">
@@ -328,6 +335,24 @@
 <ng-template #anomList>
   <!-- <div *ngFor="let item of ds.AnomList"> -->
   <div *ngFor="let item of ds.AnomListSource">
+    <div>
+      <span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
+        <span class="refLink" (click)="ds.OpenAnomaly(item.id)"
+          matTooltip="Click to open anomaly record...">[{{item.ref}}]</span>
+        <i *ngIf="false" class="addnotes fas fa-file-alt" (click)="ds.NotesClick(item)"
+          matTooltip="Add/Edit notes ..."></i>
+        <span id="an_title" matTooltip="Click to Add/Edit notes ..." (click)="ds.NotesClick(item)">{{item.tit}}.</span>
+      </span>
+      <span *ngIf="item.comm">{{item.comm}}</span>
+      <span> {{item.won ? 'WORK ORDER: ' + item.won + '.' : ''}}</span>
+      <!-- <span [innerHTML]="ds.FormatDesc(item.desc)"></span> -->
+    </div>
+    <div [innerHTML]="ds.dateStr(item.ident)"></div>
+  </div>
+</ng-template>
+<ng-template #anomListSpare>
+  <!-- <div *ngFor="let item of ds.AnomList"> -->
+  <div *ngFor="let item of ds.AnomListSpare">
     <div>
       <span [style.color]="ds.colors[item.clr-1]" style="font-weight: bold;">
         <span class="refLink" (click)="ds.OpenAnomaly(item.id)"
