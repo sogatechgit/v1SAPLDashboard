@@ -21,7 +21,7 @@ $ah_parts_less: $ah_parts;
 $h_parts: 118;
 
 $v_parts: 88;
-$v_parts_prn: 108;
+$v_parts_prn: 98;
 
 $col_dist: 80;
 
@@ -138,6 +138,10 @@ $ht_parts: #{$h_parts + $ah_parts};
     color: white;
     // background-color: white;
   }
+
+  @media print {
+    
+  }
 }
 
 #details_band {
@@ -187,7 +191,7 @@ $ht_parts: #{$h_parts + $ah_parts};
     // }
 
     #section_band {
-      background-color: orange;
+      // background-color: orange;
       grid-row: 1 / span $hd_rows;
       grid-column: 1 / -1;
       display: grid;
@@ -412,7 +416,8 @@ $ht_parts: #{$h_parts + $ah_parts};
 
       #anom_grid_spare{
         // spare anomalies pannel
-        height:120px;
+        // background-color: lime;
+        height:100px;
       }
     }
 

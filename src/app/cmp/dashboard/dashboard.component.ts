@@ -120,6 +120,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   get withSpare():boolean{
+    if(!this.ds) return false;
+    if(!this.ds.AnomListSpare) return false;
     return this.ds.AnomListSpare.length != 0;
   }
 

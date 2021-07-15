@@ -281,6 +281,7 @@ export class DataService {
     }
 
   }
+  
 
   public _AnomAssets: Array<IAssetStatusInfo>;
   get AnomAssets(): Array<IAssetStatusInfo> {
@@ -293,7 +294,7 @@ export class DataService {
   }
 
   public _AnomList: Array<IAnomalyInfo>;
-  get AnomList(): Array<IAnomalyInfo> {
+  AnomList(): Array<IAnomalyInfo> {
     if (!this._dataReady) return [];
 
     if (
@@ -314,9 +315,10 @@ export class DataService {
   private _AnomListNoGreen: Array<IAnomalyInfo>;
   private _AnomListSpare: Array<IAnomalyInfo>;
 
-  get AnomListNoGreen(): Array<IAnomalyInfo> {
+  AnomListNoGreen(): Array<IAnomalyInfo> {
+
     if (!this._dataReady) return [];
-    const anoms = this.AnomList;
+    const anoms = this.AnomList();
     if (this._AnomListNoGreen == undefined && this._AnomList) {
       const incAnom = {};
       const noGreens = this._AnomList.filter(anom => anom.clr != 1);
@@ -348,7 +350,7 @@ export class DataService {
       // this._AnomListNoGreen = this._AnomList.filter(anom => anom.clr != 1);
       // this._AnomListNoGreenWithWON = this._AnomList.filter(anom => anom.clr != 1 && anom.won != "");
 
-      console.log("AnomListNoGreen: ", this._AnomListNoGreen.length, ", AnomListNoGreenWithWON: ", this._AnomListNoGreenWithWON.length)
+      // console.log("AnomListNoGreen: ", this._AnomListNoGreen.length, ", AnomListNoGreenWithWON: ", this._AnomListNoGreenWithWON.length)
     }
 
     return this._AnomListNoGreen ? this._AnomListNoGreen : [];
@@ -366,7 +368,7 @@ export class DataService {
     return this._AnomListSourceWithWON;
   }
   get AnomListSource(): Array<IAnomalyInfo> {
-    return this._AnomListSourceWithWON ? this.AnomListNoGreenWithWON : this.AnomListNoGreen;
+    return this._AnomListSourceWithWON ? this.AnomListNoGreenWithWON : this.AnomListNoGreen();
   }
 
   get AnomListSpare(): Array<IAnomalyInfo> {

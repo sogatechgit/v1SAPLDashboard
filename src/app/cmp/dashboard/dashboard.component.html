@@ -53,7 +53,7 @@
           <ng-container *ngTemplateOutlet="anomList"></ng-container>
         </div>
 
-        <div id="anom_grid_spare_label" *ngIf="withSpare">SPARES</div>
+        <div id="anom_grid_spare_label" *ngIf="withSpare">CAPITAL SPARES ANOMALIES</div>
         <div id="anom_grid_spare" *ngIf="withSpare">
           <ng-container *ngTemplateOutlet="anomListSpare"></ng-container>
         </div>
@@ -314,15 +314,15 @@
     </button>
     <button mat-menu-item (click)="ToggleAnom()">
       <i class="fa fa-file-alt"></i>
-      <span>Show Anomlies List</span>
+      <span>Show Anomalies List</span>
     </button>
     <button mat-menu-item (click)="ToggleAnom(true)">
-      <span class="fa-stack fa-1x" stle="font-size:.5em;">
+      <span class="fa-stack fa-1x" style="margin-right:0px;">
         <i class="fa fa-file-alt fa-stack-1x" style="margin-left:-10px;"></i>
         <i class="fas fa-hashtag fa-stack-1x  fa-inverse" style="margin-left:-10px;font-size:0.7em;"></i>
       </span>
 
-      <span>Show Anomlies List with W.O.#</span>
+      <span style="margin-left:-11px;">Show Anomalies List with W.O.#</span>
     </button>
     <!-- <button mat-menu-item disabled>
     <i class="fa fa-ban"></i>
