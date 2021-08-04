@@ -18,7 +18,7 @@ $ah_parts: 40;
 $ah_parts_less: $ah_parts;
 
 // $h_parts: 118;
-$h_parts: 118;
+$h_parts: 119;
 
 $v_parts: 88;
 $v_parts_prn: 98;
@@ -134,6 +134,8 @@ $ht_parts: #{$h_parts + $ah_parts};
   font-size: 1.2em;
   font-weight: bold;
 
+  cursor: default;
+
   @media screen {
     color: white;
     // background-color: white;
@@ -170,20 +172,36 @@ $ht_parts: #{$h_parts + $ah_parts};
     grid-template: repeat($v_parts, 1fr) / repeat($h_parts, 1fr);
     aspect-ratio: $h_parts / $v_parts;
 
-    // grid-template: repeat($v_parts, 1fr) / repeat($ht_parts, 1fr);
-    // aspect-ratio: $ht_parts / $v_parts;
+    @media screen {
+      &.withAnom {
+        grid-template: repeat($v_parts_prn, 1fr) / repeat($ht_parts, 1fr);
+        aspect-ratio: $ht_parts / $v_parts_prn;
+      }    
+    }
 
+    //zzzzzz
     @media print {
       // printing diagram and anomlist side-by-side
       // grid-template: repeat($v_parts, 1fr) / repeat($h_parts, 1fr);
       // aspect-ratio: $h_parts / $v_parts;
       &.withAnom {
-        // grid-template: repeat($v_parts, 1fr) / repeat($ht_parts, 1fr);
-        // aspect-ratio: $ht_parts / $v_parts;
         grid-template: repeat($v_parts_prn, 1fr) / repeat($ht_parts, 1fr);
         aspect-ratio: $ht_parts / $v_parts_prn;
       }
     }
+
+    // @media screen {
+    //   // printing diagram and anomlist side-by-side
+    //   // grid-template: repeat($v_parts, 1fr) / repeat($h_parts, 1fr);
+    //   // aspect-ratio: $h_parts / $v_parts;
+    //   &.withAnom {
+    //     // grid-template: repeat($v_parts, 1fr) / repeat($ht_parts, 1fr);
+    //     // aspect-ratio: $ht_parts / $v_parts;
+    //     grid-template: repeat($v_parts_prn, 1fr) / repeat($ht_parts, 1fr);
+    //     aspect-ratio: $ht_parts / $v_parts_prn;
+    //   }
+    // }
+
 
     // &.no_text {
     //   grid-template: repeat($v_parts, 1fr) / repeat($h_parts, 1fr);
@@ -226,6 +244,13 @@ $ht_parts: #{$h_parts + $ah_parts};
         display: grid;
         grid-template-columns: repeat($h_parts, 1fr);
         // grid-template-columns: repeat(#{$h_parts - $ah_parts} , 1fr);
+
+        @media screen {
+          // whem printing, header must follow the body size
+          &.withAnom {
+            grid-template-columns: repeat($ht_parts, 1fr);
+          }
+        }
 
         @media print {
           // whem printing, header must follow the body size
@@ -293,12 +318,18 @@ $ht_parts: #{$h_parts + $ah_parts};
               margin-left: 2px;
             }
           }
-          // grid-column: #{$ht_parts - $ah_parts - 20} / -1;
-          // grid-template-columns: repeat($ah_parts, 1fr);
-          // grid-column: #{$ht_parts - $ah_parts} / -1;
-          //   background-color: blue;
-          //   color: white;
+
         }
+
+        @media screen {
+          &.withAnom {
+            grid-column: #{$h_parts - $ah_parts + 10} / -1;
+            > div:nth-child(1) {
+              margin-left: 2px;
+            }
+          }
+
+        }        
 
         // grid-column: #{$h_parts - $ah_parts_less} / -1;
         //$ah_parts_less
@@ -372,6 +403,10 @@ $ht_parts: #{$h_parts + $ah_parts};
       @media print {
         grid-column: #{$h_parts} / -1;
       }
+      @media screen {
+        grid-column: #{$h_parts} / -1;
+      }
+
 
       display: grid;
       grid-template: 1fr auto auto / 1fr;
@@ -461,10 +496,22 @@ $ht_parts: #{$h_parts + $ah_parts};
       grid-column: 1 / -1;
 
       background-color: #f2f2f2;
+      // background-color: red;
       display: grid;
-      grid-template-columns: repeat(8, auto);
-      place-content: center;
+
+      grid-template-columns:auto repeat(8, auto) 1fr;
+      @media print {
+        grid-template-columns:1fr repeat(8, auto) 1fr;
+      }
+
+      place-items: center;
       align-items: center;
+
+      @media print {
+        place-content: center;
+        align-items: center;
+      }
+
       font-weight: bold;
       font-size: 1.1em;
       white-space: nowrap;
@@ -490,6 +537,22 @@ $ht_parts: #{$h_parts + $ah_parts};
       }
       > div#up {
         background-color: $cc_underPreservation;
+      }
+
+      > span#spacer{
+        grid-column: 1;
+      }
+
+      > span#build{
+        grid-column: 10;
+        grid-row: 1;
+        // background-color: blue;
+        justify-self: end;
+        align-self: end;
+        font-size: 0.8em;
+        @media print {
+          opacity: 0;
+        }
       }
 
       // > :nth-child(2) {

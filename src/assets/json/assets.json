@@ -2,7 +2,7 @@
   "symbols": [
     { "symId": "asd", "label" : "ASD", "assetId": 798, "treeLoc": "aaacabax", "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "vgms", "label" : "VGMS", "assetId": 255, "treeLoc": "aaacacaa", "color": "", "override": "", "border": "", "anoms" : []},
-    { "symId": "psdv", "label" : "PSDV's", "assetId": 117, "treeLoc": "aaadaa", "color": "", "override": "", "border": "", "anoms" : []},
+    { "symId": "psdv", "label" : "PSDV's", "assetId": 117, "treeLoc": "aaadaa","linkedAssets":[{"assetId":652,"treeLoc":"aaacacaaadabab"}], "color": "", "override": "", "border": "", "anoms" : []},
     { "symId": "esdv", "label" : "ESDV's", "assetId": 781, "treeLoc": "aaacab", "color": "", "override": "", "border": "", "anoms" : []},
 
     { "symId": "r1c1", "label" : "", "assetId": 650, "treeLoc": "aaacacaaad", "color": "", "override": "", "border": "", "anoms" : []},

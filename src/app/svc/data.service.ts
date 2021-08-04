@@ -159,6 +159,11 @@ export class DataService {
         (data: any) => {
           this._subOverrides.unsubscribe();
           this._subOverrides = null;
+          if (data) {
+            data.forEach(dat => {
+              if (dat.up == null) { dat.up = 0; } else { dat.up = parseInt(dat.up) }
+            })
+          }
           this._overrides = data;
           this.ReadAnomalies();
         },
@@ -242,9 +247,24 @@ export class DataService {
         sym.override = '';
       }
 
-      const { symId, treeLoc } = sym;
+      const { symId, treeLoc, linkedAssets, label } = sym;
       // select all items under the current location
       const recs = anoms.filter((a) => a.loc.startsWith(treeLoc));
+
+
+      if (linkedAssets && linkedAssets.length) {
+        console.log("Linked Assets Detais: ", label, treeLoc, linkedAssets, recs)
+
+        linkedAssets.forEach(ass => {
+          const linkAnom = anoms.filter((a) => a.loc.startsWith(ass.treeLoc));
+          linkAnom.forEach(lnka=>recs.push(lnka));
+          console.log("Linked Assets Anomalies: ", linkAnom)
+        })
+
+      }
+      // append linked asset anomalies
+      ///if(a)
+
       if (recs.length > 1) {
         // get to worst anomalies
         recs.sort((x, y) => {
@@ -281,7 +301,7 @@ export class DataService {
     }
 
   }
-  
+
 
   public _AnomAssets: Array<IAssetStatusInfo>;
   get AnomAssets(): Array<IAssetStatusInfo> {
@@ -556,6 +576,8 @@ export class DataService {
     fd.append('anomid', anomObj.id);
     fd.append('comm', comment);
 
+    console.log("POSTNODES FORM DATA: ", fd);
+
     const obs = this.http.post(this._commentary_url, fd, {
       reportProgress: true,
       observe: 'events',
@@ -591,7 +613,7 @@ export class DataService {
     const fd = new FormData();
 
     fd.append('aid', aid);
-    fd.append('clr', clr);
+    fd.append('clr', clr ? clr : -1);
     fd.append('just', just);
     fd.append('up', String(up));
 
@@ -599,6 +621,8 @@ export class DataService {
 
     //
     const assSyms = this.symbols.filter(sym => sym.assetId == aid)
+
+    console.log("PostOverride FORM DATA: ", fd);
 
     const obs = this.http.post(this._override_url, fd, {
       reportProgress: true,

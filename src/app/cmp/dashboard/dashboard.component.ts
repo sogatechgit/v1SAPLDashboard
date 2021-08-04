@@ -162,6 +162,8 @@ export interface IAssetStatusInfo {
   label: string;
   assetId: number;
   treeLoc: string;
+  
+  linkedAssets?:Array<IAssetRefs>;
 
   override?: string;
   ovrClr?: number; 
@@ -177,6 +179,11 @@ export interface IAssetStatusInfo {
 
   choke?: boolean;
   xmasTree?: boolean;
+}
+
+export interface IAssetRefs {
+  assetId: number;
+  treeLoc: string;
 }
 
 export interface IOverride {

@@ -19,7 +19,7 @@
                   matTooltip="Show anomalies list..."></i></span>
               <span><i class="fa fa-chevron-circle-left" (click)="ToggleAnom(true)"
                   matTooltip="Show anomalies list with WON..."></i></span> -->
-              <button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+              <button *ngIf="noAnomDetails" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
                 style="font-size: 13px;margin-right: 4px;border:none;"><i class="fa fa-bars"
                   matTooltip="Print, Reload, Show Anomalies (w/,w/o) WO# ..."></i></button>
 
@@ -33,15 +33,15 @@
         <div [ngClass]="{withAnom:ds.showAnoms}" *ngIf="!noAnomDetails">
           <div>COMMENTARY{{withWON ? ' (w/ WO#)' : ''}}</div>
           <div><span>IDENTIFIED</span>
-            <i class="fas fa-print" style="font-size: 13px;" (click)="Print()" matTooltip="Print ..."></i>
+            <i class="fas fa-print" style="font-size: 13px;" (click)="Print()" title="Print ..."></i>
             <i class="fas fa-times-circle" style="font-size: 13px;margin-right: 4px;" (click)="ToggleAnom()"
-              matTooltip="Close list..."></i>
+              title="Close list..."></i>
           </div>
         </div>
         <!-- <div *ngIf="true">
           <div>COMMENTARY</div>
           <div>IDENTIFIED</div>
-        </div>         -->
+        </div>-->
       </div>
 
       <div id="topside_band">TOPSIDE</div>
@@ -61,6 +61,7 @@
       </div>
 
       <div id="footer_band">
+        <span id="spacer">&nbsp;</span>
         <div id="isni">&nbsp;</div>
         <span>IN SERVICE, NO ISSUES</span>
         <div id="isf">&nbsp;</div>
@@ -69,6 +70,7 @@
         <span>OUT OF SERVICE</span>
         <div id="up">&nbsp;</div>
         <span>UNDER PRESERVATION</span>
+        <span id="build">Subsea Integrity Status Dashboard Build 1.0.0 20210804</span>
       </div>
 
       <div id="rcv_grid">
