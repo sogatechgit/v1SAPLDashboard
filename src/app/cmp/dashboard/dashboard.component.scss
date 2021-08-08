@@ -1193,25 +1193,12 @@ $padxp: 30%;
     grid-row: 34 / span 8;
     grid-template: repeat(7, 1fr) / repeat($sp_cols, 1fr);
 
-    // #dosb{
-
-    //   grid-column:1;
-    // }
-    // #dof{
-    //   grid-column:11;
-
-    // }
-    // #tfmcd{
-    //   grid-column:21;
-
-    // }
-    // #tfmch{
-    //   grid-column:31;
-    // }
 
     span {
       grid-column: 2 / -1;
       grid-row: 1 / span 2;
+      // background-color: blue;
+      margin-top:-4px;
     }
 
     #scm,

@@ -44,7 +44,7 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ToggleUP(){
+  ToggleUP() {
     this._ovrUP = this._ovrUP ? 0 : 1;
   }
 
@@ -53,9 +53,9 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     //if (this.info.anoms.length == 0) return;
     const noAnom = (this.info.anoms.length == 0);
 
-    let ovrVal: number =noAnom ? -1 : this._ovrClr;
+    let ovrVal: number = noAnom ? -1 : this._ovrClr;
     let ovrUP: number = this._ovrUP;
-    let ovrJust: string =noAnom ? '' : this.just.nativeElement.value;
+    let ovrJust: string = noAnom ? '' : this.just.nativeElement.value;
     const clear: boolean = ovrVal == -1;
 
     this.ds.PostOverride(
@@ -70,15 +70,14 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
         this.info.ovrUP = this._ovrUP;
         if (clear) {
           this.ds.openSnackBar(
-            `Status override for ${this.info.label} removed`,
+            `Status override/under preservation status for ${this.info.label} saved.`,
             'x',
             3000
           );
         } else {
-          
+
           this.ds.openSnackBar(
-            `Status override for ${this.info.label} set to ${this.ds.colorNames[ovrVal - 1]
-            }`,
+            `Status override/under preservation status for ${this.info.label} saved.`,
             'x',
             3000
           );
@@ -115,8 +114,8 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
   }
 
   get title(): string {
-    if (this.data.linked) return this.data.linked.label.replace(/<br\/>/gi,' ');
-    return this.info.label.replace(/<br\/>/gi,' ');
+    if (this.data.linked) return this.data.linked.label.replace(/<br\/>/gi, ' ');
+    return this.info.label.replace(/<br\/>/gi, ' ');
   }
 
   get withAnoms(): boolean {
@@ -125,14 +124,14 @@ export class AnomaliesPopupComponent implements OnInit, AfterViewInit {
     return this.info.anoms.length != 0
   }
 
-  details(item:IAnomalyInfo):string{
+  details(item: IAnomalyInfo): string {
     return this.ds.FormatDesc(item.desc);
   }
 
-  UPClass():any{
+  UPClass(): any {
     return {
       fa: true,
-      'fa-toggle-off': this._ovrUP == null || this._ovrUP == undefined || this._ovrUP == 0, 
+      'fa-toggle-off': this._ovrUP == null || this._ovrUP == undefined || this._ovrUP == 0,
       'fa-toggle-on': this._ovrUP == 1,
     }
   }

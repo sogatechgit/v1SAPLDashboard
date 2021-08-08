@@ -1,2 +1,121 @@
-[{"aid":1,"oreda_clss":"8471","clr":2,"just":"TEST\r\n{Updated By: IMSA ADMIN 03-AUG-21}","up":"1"},
-	{"aid":250,"oreda_clss":"8470","clr":2,"just":"\r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":253,"oreda_clss":"8470","clr":2,"just":"[20-0050] relates to subsea PHPU, not SPCU.\r\n{Updated By: Dwayne Smith 03-AUG-21}","up":"0"},{"aid":294,"oreda_clss":"8470","clr":2,"just":"\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}","up":null},{"aid":307,"oreda_clss":"8470","clr":2,"just":"\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}","up":null},{"aid":319,"oreda_clss":"8471","clr":2,"just":"Depressurisation of flowline 3 through Riser 7 into active production swivel and HP separator with MEG dosing to V-10021 was done in Dec\u002720. \nSubsequently, FL3 was returned back into service following liquid unloading by warm fluids from P6 well rerouted into the flowline.\r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":330,"oreda_clss":"8470","clr":2,"just":"\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}","up":null},{"aid":632,"oreda_clss":"8470","clr":2,"just":"VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":638,"oreda_clss":"8470","clr":2,"just":"VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":644,"oreda_clss":"8470","clr":2,"just":"VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":650,"oreda_clss":"8470","clr":2,"just":"VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}","up":null},{"aid":781,"oreda_clss":"8470","clr":2,"just":"ESDV does not have any issue. The anomaly 19-0073 is meant for ASD\r\n{Updated By: Jayaparakash Pendem 31-MAY-21}","up":null},{"aid":798,"oreda_clss":"8472","clr":3,"just":"\r\n{Updated By: Jayaparakash Pendem 31-MAY-21}","up":null},{"aid":847,"oreda_clss":"8471","clr":2,"just":"\r\n{Updated By: A.Villarojo 06-MAY-21}","up":null},{"aid":849,"oreda_clss":"8470","clr":2,"just":"No potential impact to short term availability.\r\n{Updated By: Dwayne Smith 03-AUG-21}","up":"0"},{"aid":2269,"oreda_clss":"-1","clr":-1,"just":"\r\n{Updated By: Albert Almacen 15-JUL-21}","up":"1"},{"aid":2270,"oreda_clss":"-1","clr":-1,"just":"\r\n{Updated By: Albert Almacen 15-JUL-21}","up":"1"}]
+[
+	{
+		"aid": 1,
+		"oreda_clss": "8471",
+		"clr": 2,
+		"just": "TEST\r\n{Updated By: IMSA ADMIN 03-AUG-21}",
+		"up": "1"
+	},
+	{
+		"aid": 250,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "\r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 253,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "[20-0050] relates to subsea PHPU, not SPCU.\r\n{Updated By: Dwayne Smith 03-AUG-21}",
+		"up": "0"
+	},
+	{
+		"aid": 294,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 307,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 319,
+		"oreda_clss": "8471",
+		"clr": 2,
+		"just": "Depressurisation of flowline 3 through Riser 7 into active production swivel and HP separator with MEG dosing to V-10021 was done in Dec\u002720. \nSubsequently, FL3 was returned back into service following liquid unloading by warm fluids from P6 well rerouted into the flowline.\r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 330,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "\r\n{Updated By: Jayaparakash Pendem 02-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 632,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 638,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 644,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 650,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "VGMS issues will be addressed as a part of VGMS equipment \r\n{Updated By: Jayaparakash Pendem 01-JUN-21}",
+		"up": null
+	},
+	{
+		"aid": 781,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "ESDV does not have any issue. The anomaly 19-0073 is meant for ASD\r\n{Updated By: Jayaparakash Pendem 31-MAY-21}",
+		"up": null
+	},
+	{
+		"aid": 798,
+		"oreda_clss": "8472",
+		"clr": 3,
+		"just": "\r\n{Updated By: Jayaparakash Pendem 31-MAY-21}",
+		"up": null
+	},
+	{
+		"aid": 847,
+		"oreda_clss": "8471",
+		"clr": 2,
+		"just": "\r\n{Updated By: A.Villarojo 06-MAY-21}",
+		"up": null
+	},
+	{
+		"aid": 849,
+		"oreda_clss": "8470",
+		"clr": 2,
+		"just": "No potential impact to short term availability.\r\n{Updated By: Dwayne Smith 03-AUG-21}",
+		"up": "0"
+	},
+	{
+		"aid": 2269,
+		"oreda_clss": "-1",
+		"clr": -1,
+		"just": "\r\n{Updated By: Albert Almacen 15-JUL-21}",
+		"up": "1"
+	},
+	{
+		"aid": 2270,
+		"oreda_clss": "-1",
+		"clr": -1,
+		"just": "\r\n{Updated By: Albert Almacen 15-JUL-21}",
+		"up": "1"
+	}
+]

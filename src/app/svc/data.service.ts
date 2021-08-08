@@ -161,7 +161,27 @@ export class DataService {
           this._subOverrides = null;
           if (data) {
             data.forEach(dat => {
-              if (dat.up == null) { dat.up = 0; } else { dat.up = parseInt(dat.up) }
+              if (dat.up == null || dat.up == undefined) {
+                dat.up = 0;
+              } else {
+                try {
+                  dat.up = parseInt(dat.up)
+                } catch (e) {
+                  dat.up = 0;
+                }
+              }
+
+              if (dat.clr == null || dat.clr == undefined) {
+                dat.clr = -1;
+                console.log("!!!! NO COLOR!!!")
+              } else {
+                try {
+                  dat.clr = parseInt(dat.clr)
+                } catch (e) {
+                  dat.clr = -1;
+                }
+              }              
+
             })
           }
           this._overrides = data;
@@ -253,12 +273,12 @@ export class DataService {
 
 
       if (linkedAssets && linkedAssets.length) {
-        console.log("Linked Assets Detais: ", label, treeLoc, linkedAssets, recs)
+        // console.log("Linked Assets Detais: ", label, treeLoc, linkedAssets, recs)
 
         linkedAssets.forEach(ass => {
           const linkAnom = anoms.filter((a) => a.loc.startsWith(ass.treeLoc));
-          linkAnom.forEach(lnka=>recs.push(lnka));
-          console.log("Linked Assets Anomalies: ", linkAnom)
+          linkAnom.forEach(lnka => recs.push(lnka));
+          // console.log("Linked Assets Anomalies: ", linkAnom)
         })
 
       }
@@ -556,6 +576,7 @@ export class DataService {
   }
 
   FormatDesc(desc: string): string {
+    if(!desc) return '';
     return '<br/>' + desc.replace(/\n/gi, '<br>');
   }
 
@@ -575,8 +596,6 @@ export class DataService {
 
     fd.append('anomid', anomObj.id);
     fd.append('comm', comment);
-
-    console.log("POSTNODES FORM DATA: ", fd);
 
     const obs = this.http.post(this._commentary_url, fd, {
       reportProgress: true,
@@ -621,8 +640,6 @@ export class DataService {
 
     //
     const assSyms = this.symbols.filter(sym => sym.assetId == aid)
-
-    console.log("PostOverride FORM DATA: ", fd);
 
     const obs = this.http.post(this._override_url, fd, {
       reportProgress: true,
