@@ -70,7 +70,7 @@
         <span>OUT OF SERVICE</span>
         <div id="up">&nbsp;</div>
         <span>UNDER PRESERVATION</span>
-        <span id="build">Subsea Integrity Status Dashboard 1.0.2 20210806</span>
+        <span id="build">Subsea Integrity Status Dashboard 1.0.3 20210811</span>
       </div>
 
       <div id="rcv_grid">
@@ -346,7 +346,7 @@
         <span id="an_title" matTooltip="Click to Add/Edit notes ..." (click)="ds.NotesClick(item)">{{item.tit}}.</span>
       </span>
       <span *ngIf="item.comm">{{item.comm}}</span>
-      <span> {{item.won ? 'WO: ' + item.won + '.' : ''}}</span>
+      <span> {{item.won ? 'WO:&nbsp;' + item.won + '.' : ''}}</span>
       <!-- <span [innerHTML]="ds.FormatDesc(item.desc)"></span> -->
     </div>
     <div [innerHTML]="ds.dateStr(item.ident)"></div>
